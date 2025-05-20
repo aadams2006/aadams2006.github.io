@@ -3,249 +3,619 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alexander Adams - Mechanical Engineering Student</title>
+    <title>Alexander Adams - AI, Engineering, Quantitative Analysis</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oxanium:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+        :root {
+            --bg-deep-dark: #0A0F1A;
+            --bg-element-dark: #121A2B;
+            --border-subtle: rgba(138, 149, 171, 0.2);
+            --text-high-emphasis: #E0E6F1;
+            --text-medium-emphasis: #A0AEC0;
+            --text-low-emphasis: #718096;
+            --accent-primary: #00E5FF;
+            --accent-primary-hover: #5FFEFF;
+            --accent-secondary: #FFD700;
+            --font-body: 'Inter', sans-serif;
+            --font-heading: 'Oxanium', cursive;
+        }
 
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: var(--font-body);
+            background-color: var(--bg-deep-dark);
+            color: var(--text-medium-emphasis);
+            scroll-behavior: smooth;
+            padding-top: 70px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        .bg-primary {
-            background-color: #1a202c;
+        header {
+            background-color: rgba(18, 26, 43, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-subtle);
+            height: 70px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
         }
-
-        .text-primary {
-            color: #e8491d;
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
         }
-
-        .border-primary {
-            border-color: #e8491d;
+        header .logo-text {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.6rem;
+            color: var(--text-high-emphasis);
+            letter-spacing: 0.5px;
         }
+        header .logo-text .highlight { color: var(--accent-primary); }
 
-        .transition-transform {
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .hover\:scale-105:hover {
-            transform: scale(1.05);
-        }
-
-        #showcase {
-            background-image: url('https://www.iamthecode.org/wp-content/uploads/2021/03/florian-olivo-4hbJ-eymZ1o-unsplash-scaled-e1616631053918.jpg');
-            background-size: cover;
-            background-position: center;
+        nav a {
+            color: var(--text-medium-emphasis);
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.5rem 0.75rem;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
             position: relative;
         }
-
-        #showcase::before {
+        nav a:hover {
+            color: var(--accent-primary);
+            text-shadow: 0 0 5px rgba(0, 229, 255, 0.5);
+        }
+        nav a.nav-active {
+            color: var(--accent-primary);
+            font-weight: 700;
+        }
+        nav a.nav-active::after {
             content: '';
             position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            background: rgba(0, 0, 0, 0.5);
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-primary);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-primary);
         }
 
-        #showcase > div {
+        #hero {
+            min-height: calc(100vh - 70px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
-            z-index: 1;
+            overflow: hidden;
+            background: radial-gradient(ellipse at center, rgba(10,15,26,0.85) 0%, var(--bg-deep-dark) 75%),
+                        url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80') no-repeat center center / cover;
+            background-blend-mode: multiply;
+        }
+        #particles-js-hero { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 0; }
+
+        .hero-content-container {
+            position: relative; z-index: 1;
+            text-align: center;
+            padding: 0 1rem;
+        }
+        .hero-content-container .name-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            color: var(--text-high-emphasis);
+            letter-spacing: 1px;
+            line-height: 1.1;
+            margin-bottom: 0.75rem;
+            text-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+        }
+        .hero-content-container .hero-tagline {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            color: var(--text-medium-emphasis);
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+            font-weight: 400;
+            min-height: 2.5em;
+        }
+        .hero-cta-button {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            color: var(--bg-deep-dark);
+            background: linear-gradient(135deg, var(--accent-primary), #00BFFF);
+            padding: 0.85rem 2.25rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 5px 20px rgba(0, 229, 255, 0.3);
+            border: none;
+        }
+        .hero-cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 229, 255, 0.5);
         }
 
-        .content-section {
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
+        .content-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 1rem;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .section-header .main-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 5vw, 2.75rem);
+            color: var(--text-high-emphasis);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+        .section-header .main-title .highlight { color: var(--accent-primary); }
+        .section-header .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-medium-emphasis);
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .info-card {
+            background-color: var(--bg-element-dark);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 1.75rem;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .info-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-primary);
+            box-shadow: 0 8px 30px rgba(0, 229, 255, 0.15);
+        }
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 0%; height: 3px;
+            background: var(--accent-primary);
+            transition: width 0.4s ease;
+        }
+        .info-card:hover::before { width: 100%; }
+
+        .info-card .card-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .info-card .card-icon {
+            color: var(--accent-primary);
+            font-size: 1.5rem;
+            margin-right: 0.75rem;
+            margin-top: 0.25rem;
+        }
+        .info-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-high-emphasis);
+            margin-bottom: 0.25rem;
+        }
+        .info-card .card-subhead {
+            font-size: 1rem;
+            color: var(--text-medium-emphasis);
+            margin-bottom: 0.75rem;
+        }
+        .info-card .card-subhead .date { color: var(--text-low-emphasis); font-size: 0.9rem; }
+        .info-card .card-subhead .company-logo {
+            max-height: 20px;
+            max-width: 80px;
+            object-fit: contain;
+            margin-right: 0.5rem;
+            filter: grayscale(80%) contrast(120%) brightness(150%);
+            opacity: 0.7;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .info-card ul li {
+            font-size: 0.95rem;
+            color: var(--text-medium-emphasis);
+            line-height: 1.7;
+            margin-bottom: 0.6rem;
+            padding-left: 1.25rem;
+            position: relative;
+        }
+        .info-card ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.6em;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 5px;
+            background-color: var(--accent-primary);
+            border-radius: 50%;
+            box-shadow: 0 0 3px var(--accent-primary);
+        }
+        .info-card .highlight-metric {
+            font-weight: 600;
+            color: var(--accent-secondary);
+        }
+
+        #about .about-grid { display: flex; flex-wrap: wrap; align-items: center; gap: 2rem; }
+        #about .about-text { flex: 2; min-width: 300px; }
+        #about .profile-image-container { flex: 1; min-width: 200px; text-align: center; }
+        #about .profile-image {
+            width: 200px; height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-primary);
+            box-shadow: 0 0 25px rgba(0, 229, 255, 0.3);
+        }
+        #about p { font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem; }
+
+        #skills .skills-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        #skills .skill-category-card {
+            background-color: var(--bg-element-dark);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-subtle);
+        }
+        #skills .skill-category-card h4 {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            color: var(--accent-primary);
+            margin-bottom: 1rem;
+        }
+        #skills ul { list-style: none; padding: 0; }
+        #skills ul li {
+            background-color: rgba(0, 229, 255, 0.05);
+            color: var(--text-medium-emphasis);
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            border: 1px solid rgba(0, 229, 255, 0.1);
+            font-weight: 500;
+        }
+
+        #education .high-school-info {
+            opacity: 0.7;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px dashed var(--border-subtle);
+        }
+         #education .high-school-info h3 { font-size: 1.1rem; color: var(--text-medium-emphasis); }
+         #education .high-school-info ul li { font-size: 0.85rem; color: var(--text-low-emphasis); }
+
+        #contact .contact-content { text-align: center; }
+        #contact .contact-button {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            color: var(--bg-deep-dark);
+            background: linear-gradient(135deg, var(--accent-primary), #00BFFF);
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(0, 229, 255, 0.25);
+            border: none;
+            display: inline-block;
+        }
+        #contact .contact-button:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 6px 20px rgba(0, 229, 255, 0.4);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            border-top: 1px solid var(--border-subtle);
+            margin-top: 3rem;
+            background-color: var(--bg-element-dark);
+        }
+        footer p { font-size: 0.9rem; color: var(--text-low-emphasis); }
+        footer .footer-links a { color: var(--text-medium-emphasis); margin: 0 0.5rem; transition: color 0.3s ease; }
+        footer .footer-links a:hover { color: var(--accent-primary); }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
-<body class="bg-gray-100">
-    <header class="bg-primary text-white py-4 shadow-md fixed w-full z-10">
-        <div class="container mx-auto px-4 flex justify-between items-center">
-            <h1 class="text-2xl font-bold">Alexander Adams</h1>
+<body>
+    <header>
+        <div class="container mx-auto px-6">
+            <a href="#" class="logo-text">Alexander <span class="highlight">Adams</span></a>
             <nav>
-                <ul class="flex space-x-6">
-                    <li><a href="#about" class="hover:text-primary transition-colors duration-300">About</a></li>
-                    <li><a href="#education" class="hover:text-primary transition-colors duration-300">Education</a></li>
-                    <li><a href="#skills" class="hover:text-primary transition-colors duration-300">Skills</a></li>
-                    <li><a href="#experience" class="hover:text-primary transition-colors duration-300">Experience</a></li>
-                    <li><a href="#projects" class="hover:text-primary transition-colors duration-300">Projects</a></li>
+                <ul class="flex space-x-1 md:space-x-2">
+                    <li><a href="#hero" class="nav-link">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#experience" class="nav-link">Experience</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#education" class="nav-link">Education</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <section id="showcase" class="h-screen flex items-center">
-        <div class="container mx-auto text-center text-white">
-            <h1 class="text-5xl font-bold mb-4">Mechanical Engineering Student</h1>
-            <p class="text-xl mb-8">Combining engineering expertise with AI and software development skills</p>
-            <a href="#about" class="bg-primary text-white py-2 px-6 rounded-full hover:bg-opacity-90 transition-colors duration-300">Learn More</a>
+    <section id="hero">
+        <div id="particles-js-hero"></div>
+        <div class="hero-content-container">
+            <h1 class="name-title">Alexander Adams</h1>
+            <p id="hero-tagline" class="hero-tagline">Bridging Mechanical Engineering with AI and Quantitative Methods.</p>
+            <a href="#about" class="hero-cta-button">Explore My Work</a>
         </div>
     </section>
 
-    <main class="container mx-auto px-4 py-16">
-        <div class="content-section">
-            <div class="flex flex-wrap -mx-4 mb-16">
-                <div class="w-full md:w-2/3 px-4 mb-8 md:mb-0">
-                    <section id="about">
-                        <h2 class="text-3xl font-bold mb-4">About Me</h2>
-                        <p class="text-gray-700 leading-relaxed">Highly knowledgeable and skilled student with a proven aptitude for rapid learning and contributing effectively to any team environment. Possesses 7+ months of experience working with AI in the tech sector, leveraging leadership, communication, and collaboration to achieve goals. Demonstrates solid academic achievement in STEM disciplines, underpinned by a commitment to rigorous scientific inquiry, analytical thinking, and integrity.</p>
-                    </section>
+    <main>
+        <section id="about" class="content-wrapper animate-on-scroll">
+            <div class="section-header">
+                <h2 class="main-title">About <span class="highlight">Me</span></h2>
+                <p class="subtitle">A dedicated engineering student at the confluence of physical systems, intelligent algorithms, and software development.</p>
+            </div>
+            <div class="about-grid">
+                <div class="profile-image-container">
+                    <img src="https://media.licdn.com/dms/image/v2/D4E03AQEBw-K9lrPG1g/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1711306784597?e=1753315200&v=beta&t=j1g2-_5m9IRYQc8fzJLC7mdJsOht02ePRCPRj_-PPxM" alt="Alexander Adams" class="profile-image">
                 </div>
-                <div class="w-full md:w-1/3 px-4">
-                    <h2 class="text-3xl font-bold mb-4">Connect with Me</h2>
-                    <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="aadams06" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/aadams06?trk=profile-badge">Alexander Adams</a></div>
+                <div class="about-text">
+                    <p>Highly knowledgeable and skilled student with a proven aptitude for rapid learning and contributing effectively to any team environment. My experience spans over <span class="highlight-metric">7+ months in the AI tech sector</span>, where I've honed leadership, communication, and collaboration skills.</p>
+                    <p>I possess a strong foundation in STEM disciplines, driven by a commitment to rigorous scientific inquiry, analytical thinking, and integrity. My passion lies in developing innovative solutions by integrating mechanical engineering principles with advanced AI and software development techniques.</p>
                 </div>
             </div>
+        </section>
 
-            <section id="education" class="mb-16">
-                <h2 class="text-3xl font-bold mb-4">Education</h2>
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <div class="mb-6">
-                        <h3 class="text-xl font-bold">University of Pittsburgh</h3>
-                        <p>BS in Mechanical Engineering</p>
-                        <p>Minor in Mathematics</p>
-                        <p>Expected Graduation: 2028</p>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold">Sleepy Hollow High School</h3>
-                        <p>Advanced High School Diploma</p>
-                        <p>SAT: 1470 (Math: 750, EBW: 720)</p>
-                        <p>2x AP Scholar & National African American Recognition Award Recipient</p>
-                        <p>Member of Varsity Lacrosse Team</p>
-                    </div>
+        <section id="experience" class="content-wrapper">
+            <div class="section-header animate-on-scroll">
+                <h2 class="main-title">Professional <span class="highlight">Experience</span></h2>
+                <p class="subtitle">Engaging in impactful research and development roles at the forefront of technology and engineering.</p>
+            </div>
+            <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+                <div class="info-card animate-on-scroll">
+                    <h3>REU Research Fellow</h3>
+                    <p class="card-subhead">National Science Foundation <span class="date">| Jun 2025 - Present</span></p>
+                    <ul>
+                        <li>Developed AI-driven graph-theoretic models for analyzing interdependencies in multilayer infrastructure networks, focusing on resilience and risk assessment.</li>
+                        <li>Implemented graph neural networks (GNNs) and clustering algorithms to identify vulnerable node clusters in smart grid and economic systems.</li>
+                    </ul>
                 </div>
-            </section>
-
-            <section id="skills" class="mb-16">
-                <h2 class="text-3xl font-bold mb-4">Technical Skills</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="bg-white p-4 rounded-lg shadow-md">
-                        <h3 class="font-bold mb-2">Computer Languages</h3>
-                        <ul class="list-disc list-inside text-gray-700">
-                            <li>Python</li>
-                            <li>Java</li>
-                            <li>JavaScript</li>
-                            <li>C</li>
-                            <li>MATLAB</li>
-                            <li>HTML</li>
-                            <li>CSS</li>
-                        </ul>
-                    </div>
-                    <div class="bg-white p-4 rounded-lg shadow-md">
-                        <h3 class="font-bold mb-2">Skills</h3>
-                        <ul class="list-disc list-inside text-gray-700">
-                            <li>Quantitative & Qualitative Research</li>
-                            <li>Software Development</li>
-                            <li>Troubleshooting</li>
-                            <li>Strong Mathematical Aptitude</li>
-                            <li>Operating Systems (Windows, MacOS)</li>
-                        </ul>
-                    </div>
+                <div class="info-card animate-on-scroll" style="transition-delay: 0.1s;">
+                    <h3>Undergraduate Researcher</h3>
+                    <p class="card-subhead">Swanson School of Engineering, UoP <span class="date">| Sep 2024 - Present</span></p>
+                    <ul>
+                        <li>Engineered nanoscale contact models using Gwyddion, MATLAB, profilometry, and micromechanical tools; analyzed <span class="highlight-metric">100+ surface scans</span> (10 nm - 100 μm) for adhesion/mechanical properties.</li>
+                        <li>Collaborated with <span class="highlight-metric">5+ PhD students/postdocs</span>, optimizing experimental/data workflows and reducing characterization time by <span class="highlight-metric">30%</span>.</li>
+                    </ul>
                 </div>
-            </section>
-
-            <section id="experience" class="mb-16">
-                <h2 class="text-3xl font-bold mb-4">Work Experience</h2>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-white p-6 rounded-lg shadow-md transition-transform hover:scale-105">
-                        <div class="mb-4">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTAwqAIHXFGGPbaba-NHUgRlfIwkPO-PDi5Q&s" alt="Swanson School of Engineering" class="w-full h-48 object-cover rounded-lg">
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Swanson School of Engineering - Undergraduate Researcher</h3>
-                        <p class="text-gray-700 mb-2">Sep 2024 - Present</p>
-                        <ul class="list-disc list-inside text-gray-700">
-                            <li>Developed nanoscale contact models using AFM and in-situ TEM</li>
-                            <li>Analyzed 100+ surface scans across 10 nm - 100 μm</li>
-                            <li>Collaborated with 5+ PhD students to optimize research workflows</li>
-                        </ul>
-                    </div>
-
-                    <div class="bg-white p-6 rounded-lg shadow-md transition-transform hover:scale-105">
-                        <div class="mb-4">
-                            <img src="https://i.gyazo.com/a73f709cb983fc4534e6b7382b3130ef.png" alt="Headstarter AI" class="w-full h-48 object-cover rounded-lg">
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Headstarter AI - Software Engineering Fellow</h3>
-                        <p class="text-gray-700 mb-2">Jul 2024 - Sep 2024</p>
-                        <ul class="list-disc list-inside text-gray-700">
-                            <li>Built 5+ AI apps and APIs with 98% accuracy</li>
-                            <li>Developed projects using NextJS, OpenAI, Pinecone</li>
-                            <li>Led 4+ engineering fellows in project development</li>
-                        </ul>
-                    </div>
-
-                    <div class="bg-white p-6 rounded-lg shadow-md transition-transform hover:scale-105">
-                        <div class="mb-4">
-                            <img src="https://i.gyazo.com/4c01fa0c4d08744e7c97ac4404dbe9a3.png" alt="SUPERTUTOR" class="w-full h-48 object-cover rounded-lg">
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">SUPERTUTOR - Web Development Intern</h3>
-                        <p class="text-gray-700 mb-2">May 2024 - Aug 2024</p>
-                        <ul class="list-disc list-inside text-gray-700">
-                            <li>Developed front-end components using React.js</li>
-                            <li>Increased user base by 166.67%</li>
-                            <li>Implemented 7+ full-stack improvements</li>
-                        </ul>
-                    </div>
+                <div class="info-card animate-on-scroll" style="transition-delay: 0.2s;">
+                    <h3>Software Engineering Fellow</h3>
+                    <p class="card-subhead">Headstarter AI <span class="date">| Jul 2024 – Sep 2024</span></p>
+                    <ul>
+                        <li>Built <span class="highlight-metric">5+ AI apps & APIs</span> (NextJS, OpenAI, Pinecone, StripeAPI) with <span class="highlight-metric">98% accuracy</span>, impacting <span class="highlight-metric">1000+ users</span>.</li>
+                        <li>Led <span class="highlight-metric">4+ fellows</span> in project development (design to deployment) using MVC patterns.</li>
+                        <li>Coached by Amazon, Bloomberg, Capital One engineers on CI/CD, Git, and critical thinking.</li>
+                    </ul>
                 </div>
-            </section>
-
-            <section id="projects" class="mb-16">
-                <h2 class="text-3xl font-bold mb-4">Projects</h2>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-white p-6 rounded-lg shadow-md transition-transform hover:scale-105">
-                        <div class="mb-4">
-                            <img src="https://i.gyazo.com/eb0d84e3dc9d9e41d56078d12cd9215a.png" alt="Trading Algorithms" class="w-full h-48 object-cover rounded-lg">
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Trading Algorithms</h3>
-                        <p class="text-gray-700 mb-2">Jan 2023 - Present</p>
-                        <ul class="list-disc list-inside text-gray-700">
-                            <li>Developed profitable algorithms in QuantConnect</li>
-                            <li>Achieved 263% ROI on S&P 500 index</li>
-                            <li>Implemented trailing-stop risk management model</li>
-                        </ul>
-                    </div>
-
-                     <div class="bg-white p-6 rounded-lg shadow-md transition-transform hover:scale-105">
-                        <div class="mb-4">
-                            <img src="https://content.presspage.com/uploads/2602/ben-exterior.jpg?10000" alt="Engineering 11 Project" class="w-full h-48 object-cover rounded-lg">
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Engineering 11 Project</h3>
-                        <p class="text-gray-700 mb-2">Sep 2024 - Dec 2024</p>
-                       <p class="text-gray-700">Designed, prototyped, and created a phone lockbox intended to increase student focus during study sessions.</p>
-                    </div>
-                    
-                    
-                    <div class="bg-white p-6 rounded-lg shadow-md transition-transform hover:scale-105">
-                        <div class="mb-4">
-                            <img src="https://i.gyazo.com/58568ecc0927092b9c353d5033517bd5.jpg" alt="F-16 Radar Absorbing Materials" class="w-full h-48 object-cover rounded-lg">
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">F-16 Radar Absorption Research</h3>
-                        <p class="text-gray-700 mb-2">Jun 2022 - Mar 2023</p>
-                        <p class="text-gray-700">Conducted scientific research on enhancing F-16 stealth capabilities using electromagnetic simulation to minimize radar cross-section below 0.1 m².</p>
-                    </div>
+                <div class="info-card animate-on-scroll" style="transition-delay: 0.3s;">
+                    <h3>Web Development Intern</h3>
+                    <p class="card-subhead">SUPERTUTOR <span class="date">| May 2024 – Aug 2024</span></p>
+                    <ul>
+                        <li>Developed/optimized front-end components (JS, HTML, React.js) for an AI educational platform, leading to a <span class="highlight-metric">166.67% user base increase</span>.</li>
+                        <li>Implemented <span class="highlight-metric">7+ full-stack improvements</span>, boosting platform performance and functionality through collaborative design.</li>
+                    </ul>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
+
+        <section id="projects" class="content-wrapper">
+            <div class="section-header animate-on-scroll">
+                <h2 class="main-title"><span class="highlight">Projects</span></h2>
+                <p class="subtitle">Applying theoretical knowledge and technical skills to create innovative solutions and gain practical insights.</p>
+            </div>
+            <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+                 <div class="info-card animate-on-scroll">
+                    <h3>Trading Algorithms & Quantitative Models</h3>
+                    <p class="card-subhead">Quant Finance Research <span class="date">| Jan 2023 - Present</span></p>
+                    <ul>
+                        <li>Developed profitable trading algorithms in QuantConnect using Python.</li>
+                        <li>Achieved a <span class="highlight-metric">263% ROI</span> over a 10-year backtest on S&P 500 index, implementing a trailing-stop risk management model.</li>
+                    </ul>
+                </div>
+                <div class="info-card animate-on-scroll" style="transition-delay: 0.1s;">
+                    <h3>Comparative Analysis: Pseudoinverse vs. Gradient Descent for Linear Regression</h3>
+                    <p class="card-subhead">Independent Academic Research <span class="date">| Dec 2024 - Present</span></p>
+                    <ul>
+                        <li>Developed Python scripts evaluating computational efficiency and accuracy of Moore-Penrose pseudoinverse versus gradient descent methods.</li>
+                        <li>Analyzed synthetic and real-world datasets to optimize regression methods for enhanced stability and performance.</li>
+                    </ul>
+                </div>
+            </div>
+          </div> <div class="info-card animate-on-scroll mt-8 mb-8" style="transition-delay: 0.2s;">
+<h3>F-16 Radar Absorption Research</h3>
+    <p class="card-subhead">Pre-Collegiate Scientific Research <span class="date">| Jun 2022 - Mar 2023</span></p>
+    <ul>
+        <li>Conducted research on enhancing F-16 stealth capabilities using electromagnetic simulation (FEKO) and CAD software.</li>
+        <li>Focused on minimizing radar cross-section (RCS) to below <span class="highlight-metric">0.1 m²</span> through material analysis and geometric optimization.</li>
+    </ul>
+</div>
+          
+        </section>
+
+        <section id="education" class="content-wrapper">
+            <div class="section-header animate-on-scroll">
+                <h2 class="main-title"><span class="highlight">Education</span></h2>
+            </div>
+            <div class="info-card animate-on-scroll main-education">
+                <h3>BS in Mechanical Engineering</h3>
+                <p class="card-subhead">University of Pittsburgh, Pittsburgh, PA <span class="date">| Minor in Mathematics | Expected Graduation: 2028</span></p>
+                <ul>
+                    <li>Focusing on the intersection of traditional engineering with computational methods and AI.</li>
+                    <li>Active member of ASME, Pitt SOAR, and Panther Algo Trading.</li>
+                </ul>
+            </div>
+            <div class="high-school-info animate-on-scroll info-card" style="transition-delay: 0.1s; background-color: rgba(18,26,43,0.5);">
+                <h3>Advanced Regents High School Diploma</h3>
+                <p class="card-subhead">Sleepy Hollow High School, Sleepy Hollow, NY</p>
+                <ul>
+                    <li>SAT: 1470 (Math: 750, EBW: 720)</li>
+                    <li>2x AP Scholar & National African American Recognition Award Recipient</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="skills" class="content-wrapper">
+             <div class="section-header animate-on-scroll">
+                <h2 class="main-title">Technical <span class="highlight">Skills</span></h2>
+                <p class="subtitle">A comprehensive suite of programming languages, software proficiency, and analytical capabilities.</p>
+            </div>
+            <div class="skills-container animate-on-scroll">
+                <div class="skill-category-card">
+                    <h4>Programming & Software</h4>
+                    <ul>
+                        <li>Python (NumPy, Pandas, Scikit-learn)</li>
+                        <li>Java, JavaScript (React.js, NextJS)</li>
+                        <li>C, MATLAB</li>
+                        <li>HTML, CSS, SQL (basics)</li>
+                        <li>AI/ML Frameworks (OpenAI API, Pinecone)</li>
+                        <li>Version Control (Git, GitHub)</li>
+                    </ul>
+                </div>
+                <div class="skill-category-card">
+                    <h4>Engineering & Analytical</h4>
+                    <ul>
+                        <li>Quantitative & Qualitative Research</li>
+                        <li>Software Development Lifecycle</li>
+                        <li>Troubleshooting & Diagnostics</li>
+                        <li>Strong Mathematical Aptitude</li>
+                        <li>Mechanical Design Principles (Conceptual)</li>
+                        <li>Data Analysis & Visualization</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="content-wrapper">
+            <div class="section-header animate-on-scroll">
+                 <h2 class="main-title"><span class="highlight">Contact</span></h2>
+                <p class="subtitle">Open to innovative projects, research collaborations, and challenging opportunities at the intersection of engineering, AI, and finance.</p>
+            </div>
+            <div class="contact-content animate-on-scroll">
+                <a href="mailto:asa298@pitt.edu" class="contact-button">asa298@pitt.edu</a>
+                 <div class="mt-8 flex justify-center space-x-6">
+                    <a href="https://www.linkedin.com/in/aadams06" target="_blank" rel="noopener noreferrer" class="text-2xl hover:text-accent-primary transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer class="bg-primary text-white py-8 mt-16">
-        <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2024 Alexander Adams. All rights reserved.</p>
+    <footer>
+        <p>&copy; <span id="currentYear"></span> Alexander Adams. Precision Engineered | Intelligently Automated.</p>
+        <div class="footer-links mt-2">
+            <a href="#hero">Home</a> |
+            <a href="https://www.linkedin.com/in/aadams06" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        if (document.getElementById('hero-tagline')) {
+            new Typed('#hero-tagline', {
+                strings: [
+                    "Bridging Mechanical Engineering with AI and Quantitative Methods.",
+                    "Innovating at the Nexus of Physical Systems & Intelligent Algorithms.",
+                    "Data-Driven Engineering. Software-Powered Solutions."
+                ],
+                typeSpeed: 40, backSpeed: 25, backDelay: 2500, startDelay: 500,
+                loop: true, smartBackspace: true, showCursor: false
             });
+        }
+
+        if (document.getElementById('particles-js-hero')) {
+            particlesJS('particles-js-hero', {
+                "particles": {
+                    "number": {"value": 60, "density": {"enable": true, "value_area": 800}},
+                    "color": {"value": "#00E5FF"},
+                    "shape": {"type": "circle"},
+                    "opacity": {"value": 0.2, "random": true},
+                    "size": {"value": 2, "random": true},
+                    "line_linked": {"enable": true, "distance": 120, "color": "#718096", "opacity": 0.15, "width": 1},
+                    "move": {"enable": true, "speed": 1, "direction": "none", "random": true, "straight": false, "out_mode": "out"}
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {"onhover": {"enable": false, "mode": "grab"}, "onclick": {"enable": false, "mode": "push"}},
+                }, "retina_detect": true
+            });
+        }
+
+        const scrollElements = document.querySelectorAll('.animate-on-scroll');
+        const elementObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.05 });
+        scrollElements.forEach(el => elementObserver.observe(el));
+
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = Array.from(document.querySelectorAll('main section[id], header section[id], #hero[id]'));
+
+        function highlightNavLink() {
+            let currentSectionId = 'hero';
+            const scrollY = window.pageYOffset;
+            const headerHeight = 70;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - headerHeight - 50;
+                if (scrollY >= sectionTop) {
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+
+             if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 100 && sections.length > 0) {
+                currentSectionId = sections[sections.length -1].getAttribute('id');
+            }
+
+            navLinks.forEach(link => {
+                link.classList.remove('nav-active');
+                if (link.getAttribute('href') === `#${currentSectionId}`) {
+                    link.classList.add('nav-active');
+                }
+            });
+        }
+        window.addEventListener('scroll', highlightNavLink);
+        window.addEventListener('load', () => {
+            if (window.location.hash) {
+                const targetId = window.location.hash.substring(1);
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) { targetSection.scrollIntoView({ behavior: 'smooth' }); }
+            }
+            highlightNavLink();
         });
     </script>
-    <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
 </body>
 </html>
