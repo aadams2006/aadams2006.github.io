@@ -1,613 +1,693 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alexander Adams - AI, Engineering, Quantitative Analysis</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oxanium:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-deep-dark: #0A0F1A;
-            --bg-element-dark: #121A2B;
-            --border-subtle: rgba(138, 149, 171, 0.2);
-            --text-high-emphasis: #E0E6F1;
-            --text-medium-emphasis: #A0AEC0;
-            --text-low-emphasis: #718096;
-            --accent-primary: #00E5FF;
-            --accent-primary-hover: #5FFEFF;
-            --accent-secondary: #FFD700;
-            --font-body: 'Inter', sans-serif;
-            --font-heading: 'Oxanium', cursive;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alexander Adams</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f7f7f5;
+    --surface:#ffffff;
+    --ink:#0b0d10;
+    --muted:#565c63;
+    --faint:#9da3a9;
+    --line:rgba(11,13,16,0.09);
+    --line-strong:rgba(11,13,16,0.24);
+    --accent:#1449e0;
+    --accent-dim:rgba(20,73,224,0.08);
+    --pos:#0e8f5d;
+    --neg:#b0231c;
+    --display:'Space Grotesk', sans-serif;
+    --mono:'JetBrains Mono', monospace;
+    --sans:'Inter', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  ::selection{background:var(--accent); color:#fff;}
+  img{max-width:100%; display:block;}
 
-        body {
-            font-family: var(--font-body);
-            background-color: var(--bg-deep-dark);
-            color: var(--text-medium-emphasis);
-            scroll-behavior: smooth;
-            padding-top: 70px;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
+  /* ---------- nav ---------- */
+  header.topnav{
+    position:fixed; top:0; left:0; width:100%; z-index:200;
+    background:rgba(247,247,245,0.85); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    height:64px;
+  }
+  .nav-inner{
+    max-width:1180px; margin:0 auto; height:100%; padding:0 2rem;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .wordmark{font-family:var(--display); font-weight:600; font-size:1.05rem; letter-spacing:-0.01em; text-decoration:none;}
+  .wordmark span{color:var(--accent);}
+  nav.links{display:flex; gap:2rem;}
+  nav.links a{
+    font-family:var(--mono); font-size:0.78rem; text-decoration:none; color:var(--muted);
+    position:relative; padding:0.3rem 0;
+  }
+  nav.links a::after{
+    content:''; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--accent);
+    transition:width .25s ease;
+  }
+  nav.links a:hover{color:var(--ink);}
+  nav.links a:hover::after{width:100%;}
+  .nav-toggle{display:none; background:none; border:none; cursor:pointer; padding:0.4rem;}
+  .nav-toggle span{display:block; width:22px; height:2px; background:var(--ink); margin:4px 0;}
 
-        header {
-            background-color: rgba(18, 26, 43, 0.85);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-subtle);
-            height: 70px;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 100%;
-        }
-        header .logo-text {
-            font-family: var(--font-heading);
-            font-weight: 700;
-            font-size: 1.6rem;
-            color: var(--text-high-emphasis);
-            letter-spacing: 0.5px;
-        }
-        header .logo-text .highlight { color: var(--accent-primary); }
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative; padding:9.5rem 2rem 4rem; max-width:1180px; margin:0 auto;
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:2rem; align-items:center; min-height:640px;
+  }
+  .hero-copy .eyebrow{
+    font-family:var(--mono); font-size:0.75rem; color:var(--accent); letter-spacing:0.08em; margin-bottom:1.2rem;
+    text-transform:uppercase;
+  }
+  .hero-copy h1{
+    font-family:var(--display); font-weight:600; font-size:clamp(2.4rem,4.6vw,3.6rem);
+    line-height:1.08; letter-spacing:-0.02em; margin:0 0 1.2rem;
+  }
+  .hero-copy p{font-size:1.08rem; line-height:1.7; color:var(--muted); max-width:46ch; margin:0 0 1.6rem;}
+  .hero-links{display:flex; gap:1.6rem; font-family:var(--mono); font-size:0.82rem;}
+  .hero-links a{text-decoration:none; border-bottom:1px solid var(--line-strong); padding-bottom:2px;}
+  .hero-links a:hover{border-color:var(--accent); color:var(--accent);}
+  .hero-visual{position:relative; height:440px;}
+  #netCanvas{width:100%; height:100%; display:block;}
 
-        nav a {
-            color: var(--text-medium-emphasis);
-            font-weight: 600;
-            font-size: 0.95rem;
-            padding: 0.5rem 0.75rem;
-            transition: color 0.3s ease, text-shadow 0.3s ease;
-            position: relative;
-        }
-        nav a:hover {
-            color: var(--accent-primary);
-            text-shadow: 0 0 5px rgba(0, 229, 255, 0.5);
-        }
-        nav a.nav-active {
-            color: var(--accent-primary);
-            font-weight: 700;
-        }
-        nav a.nav-active::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 6px;
-            height: 6px;
-            background-color: var(--accent-primary);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--accent-primary);
-        }
+  /* ---------- ticker ---------- */
+  .ticker-wrap{
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    background:var(--surface); overflow:hidden; white-space:nowrap; padding:0.7rem 0;
+  }
+  .ticker-track{display:inline-block; padding-left:100%; animation:tick 40s linear infinite;}
+  .ticker-track span{font-family:var(--mono); font-size:0.78rem; color:var(--muted); margin-right:2.4rem;}
+  .ticker-track span b{color:var(--ink); font-weight:600;}
+  .ticker-track span.up{color:var(--pos);}
+  @keyframes tick{ from{transform:translateX(0);} to{transform:translateX(-100%);} }
 
-        #hero {
-            min-height: calc(100vh - 70px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            background: radial-gradient(ellipse at center, rgba(10,15,26,0.85) 0%, var(--bg-deep-dark) 75%),
-                        url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80') no-repeat center center / cover;
-            background-blend-mode: multiply;
-        }
-        #particles-js-hero { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 0; }
+  /* ---------- stat band ---------- */
+  .stat-band{
+    max-width:1180px; margin:0 auto; padding:3rem 2rem;
+    display:grid; grid-template-columns:repeat(5,1fr); gap:1.5rem;
+    border-bottom:1px solid var(--line);
+  }
+  .stat-big{text-align:left;}
+  .stat-big .num{font-family:var(--display); font-weight:600; font-size:clamp(1.6rem,2.6vw,2.1rem); color:var(--accent);}
+  .stat-big small{display:block; font-family:var(--mono); font-size:0.68rem; color:var(--faint); letter-spacing:0.03em; margin-top:0.4rem; text-transform:uppercase;}
 
-        .hero-content-container {
-            position: relative; z-index: 1;
-            text-align: center;
-            padding: 0 1rem;
-        }
-        .hero-content-container .name-title {
-            font-family: var(--font-heading);
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 700;
-            color: var(--text-high-emphasis);
-            letter-spacing: 1px;
-            line-height: 1.1;
-            margin-bottom: 0.75rem;
-            text-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
-        }
-        .hero-content-container .hero-tagline {
-            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-            color: var(--text-medium-emphasis);
-            max-width: 700px;
-            margin: 0 auto 2rem auto;
-            font-weight: 400;
-            min-height: 2.5em;
-        }
-        .hero-cta-button {
-            font-family: var(--font-heading);
-            font-weight: 600;
-            color: var(--bg-deep-dark);
-            background: linear-gradient(135deg, var(--accent-primary), #00BFFF);
-            padding: 0.85rem 2.25rem;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            font-size: 1.1rem;
-            letter-spacing: 0.5px;
-            box-shadow: 0 5px 20px rgba(0, 229, 255, 0.3);
-            border: none;
-        }
-        .hero-cta-button:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(0, 229, 255, 0.5);
-        }
+  /* ---------- generic sections ---------- */
+  section{max-width:1180px; margin:0 auto; padding:4rem 2rem; border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  .sec-head{display:flex; align-items:baseline; gap:0.9rem; margin-bottom:2rem;}
+  .sec-head .tag{font-family:var(--mono); font-size:0.72rem; color:var(--accent); letter-spacing:0.08em;}
+  .sec-head h2{font-family:var(--display); font-weight:600; font-size:1.6rem; margin:0; letter-spacing:-0.01em;}
+  .sec-note{color:var(--muted); font-size:0.98rem; max-width:62ch; line-height:1.7; margin-bottom:2rem;}
 
-        .content-wrapper {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 4rem 1rem;
-        }
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        .section-header .main-title {
-            font-family: var(--font-heading);
-            font-size: clamp(2rem, 5vw, 2.75rem);
-            color: var(--text-high-emphasis);
-            margin-bottom: 0.5rem;
-            letter-spacing: 0.5px;
-        }
-        .section-header .main-title .highlight { color: var(--accent-primary); }
-        .section-header .subtitle {
-            font-size: 1.1rem;
-            color: var(--text-medium-emphasis);
-            max-width: 650px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
+  /* profile */
+  .profile-grid{display:grid; grid-template-columns:1fr 260px; gap:2.5rem; align-items:start;}
+  .coverage{display:flex; flex-wrap:wrap; gap:0.55rem; margin-top:1.6rem;}
+  .coverage span{
+    font-family:var(--mono); font-size:0.72rem; border:1px solid var(--line-strong);
+    padding:0.4rem 0.75rem; color:var(--muted); background:var(--surface);
+  }
+  .id-card{border:1px solid var(--line); background:var(--surface); padding:1.4rem; text-align:center;}
+  .avatar{width:96px; height:96px; border-radius:50%; overflow:hidden; margin:0 auto 1rem; position:relative; background:var(--accent);}
+  .avatar img{width:100%; height:100%; object-fit:cover;}
+  .avatar .fallback{
+    position:absolute; inset:0; display:none; align-items:center; justify-content:center;
+    color:#fff; font-family:var(--mono); font-size:1.3rem; font-weight:600;
+  }
+  .id-card .id-name{font-family:var(--display); font-weight:600; font-size:1.05rem;}
+  .id-card .id-role{font-family:var(--mono); font-size:0.68rem; color:var(--muted); margin-top:0.3rem; line-height:1.5;}
 
-        .info-card {
-            background-color: var(--bg-element-dark);
-            border: 1px solid var(--border-subtle);
-            border-radius: 12px;
-            padding: 1.75rem;
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        .info-card:hover {
-            transform: translateY(-6px);
-            border-color: var(--accent-primary);
-            box-shadow: 0 8px 30px rgba(0, 229, 255, 0.15);
-        }
-        .info-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 0%; height: 3px;
-            background: var(--accent-primary);
-            transition: width 0.4s ease;
-        }
-        .info-card:hover::before { width: 100%; }
+  /* timeline entries */
+  .entry{
+    display:grid; grid-template-columns:150px 1fr; gap:1.6rem;
+    padding:1.6rem 0; border-top:1px solid var(--line);
+  }
+  .entry:first-of-type{border-top:none;}
+  .entry .when{font-family:var(--mono); font-size:0.72rem; color:var(--faint); padding-top:0.2rem;}
+  .entry .who{font-family:var(--display); font-size:1.15rem; font-weight:600; margin:0 0 0.15rem;}
+  .entry .where{font-family:var(--mono); font-size:0.74rem; color:var(--accent); margin-bottom:0.9rem;}
+  .entry ul{margin:0; padding-left:1.1rem; color:var(--muted); font-size:0.93rem; line-height:1.65;}
+  .entry li{margin-bottom:0.5rem;}
+  .metric{color:var(--ink); font-family:var(--mono); font-weight:600;}
 
-        .info-card .card-header {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-        }
-        .info-card .card-icon {
-            color: var(--accent-primary);
-            font-size: 1.5rem;
-            margin-right: 0.75rem;
-            margin-top: 0.25rem;
-        }
-        .info-card h3 {
-            font-family: var(--font-heading);
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--text-high-emphasis);
-            margin-bottom: 0.25rem;
-        }
-        .info-card .card-subhead {
-            font-size: 1rem;
-            color: var(--text-medium-emphasis);
-            margin-bottom: 0.75rem;
-        }
-        .info-card .card-subhead .date { color: var(--text-low-emphasis); font-size: 0.9rem; }
-        .info-card .card-subhead .company-logo {
-            max-height: 20px;
-            max-width: 80px;
-            object-fit: contain;
-            margin-right: 0.5rem;
-            filter: grayscale(80%) contrast(120%) brightness(150%);
-            opacity: 0.7;
-        }
+  /* research cards */
+  .grid-research{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.3rem;}
+  .card{border:1px solid var(--line); background:var(--surface); padding:1.6rem; transition:border-color .2s ease, transform .2s ease;}
+  .card:hover{border-color:var(--accent); transform:translateY(-3px);}
+  .card .kicker{font-family:var(--mono); font-size:0.66rem; color:var(--faint); letter-spacing:0.05em; text-transform:uppercase;}
+  .card h3{font-family:var(--display); font-weight:600; font-size:1.1rem; margin:0.4rem 0 0.9rem;}
+  .card ul{margin:0; padding-left:1.1rem; color:var(--muted); font-size:0.9rem; line-height:1.6;}
+  .card li{margin-bottom:0.45rem;}
+  .card .stat-row{display:flex; gap:1.4rem; margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line);}
+  .card .stat{font-family:var(--mono);}
+  .card .stat b{display:block; color:var(--accent); font-size:1.02rem;}
+  .card .stat small{color:var(--faint); font-size:0.63rem; letter-spacing:0.03em; text-transform:uppercase;}
+  .card canvas.spark{width:100%; height:60px; display:block; margin-top:0.9rem;}
 
-        .info-card ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        .info-card ul li {
-            font-size: 0.95rem;
-            color: var(--text-medium-emphasis);
-            line-height: 1.7;
-            margin-bottom: 0.6rem;
-            padding-left: 1.25rem;
-            position: relative;
-        }
-        .info-card ul li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0.6em;
-            transform: translateY(-50%);
-            width: 5px;
-            height: 5px;
-            background-color: var(--accent-primary);
-            border-radius: 50%;
-            box-shadow: 0 0 3px var(--accent-primary);
-        }
-        .info-card .highlight-metric {
-            font-weight: 600;
-            color: var(--accent-secondary);
-        }
+  /* education */
+  .edu-row{display:grid; grid-template-columns:150px 1fr; gap:1.6rem;}
+  .edu-row .deg{font-family:var(--display); font-size:1.2rem; font-weight:600; margin:0 0 0.3rem;}
+  .edu-row .school{font-family:var(--mono); font-size:0.76rem; color:var(--accent); margin-bottom:0.9rem;}
+  .edu-row ul{margin:0; padding-left:1.1rem; color:var(--muted); font-size:0.9rem; line-height:1.6;}
 
-        #about .about-grid { display: flex; flex-wrap: wrap; align-items: center; gap: 2rem; }
-        #about .about-text { flex: 2; min-width: 300px; }
-        #about .profile-image-container { flex: 1; min-width: 200px; text-align: center; }
-        #about .profile-image {
-            width: 200px; height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--accent-primary);
-            box-shadow: 0 0 25px rgba(0, 229, 255, 0.3);
-        }
-        #about p { font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem; }
+  /* skills */
+  .skills-cols{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:2rem;}
+  .skills-cols h4{font-family:var(--mono); font-size:0.68rem; letter-spacing:0.08em; color:var(--accent); text-transform:uppercase; margin:0 0 0.9rem;}
+  .tagset{display:flex; flex-wrap:wrap; gap:0.5rem;}
+  .tagset span{font-family:var(--mono); font-size:0.76rem; color:var(--muted); border:1px solid var(--line); padding:0.35rem 0.65rem; background:var(--surface);}
 
-        #skills .skills-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-        #skills .skill-category-card {
-            background-color: var(--bg-element-dark);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 1px solid var(--border-subtle);
-        }
-        #skills .skill-category-card h4 {
-            font-family: var(--font-heading);
-            font-size: 1.2rem;
-            color: var(--accent-primary);
-            margin-bottom: 1rem;
-        }
-        #skills ul { list-style: none; padding: 0; }
-        #skills ul li {
-            background-color: rgba(0, 229, 255, 0.05);
-            color: var(--text-medium-emphasis);
-            padding: 0.6rem 1rem;
-            border-radius: 6px;
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-            border: 1px solid rgba(0, 229, 255, 0.1);
-            font-weight: 500;
-        }
+  /* contact */
+  .contact-block{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:2rem;}
+  .contact-block .big-mail{font-family:var(--display); font-weight:600; font-size:clamp(1.4rem,2.8vw,2rem); text-decoration:none; border-bottom:1px solid var(--line-strong);}
+  .contact-block .big-mail:hover{color:var(--accent); border-color:var(--accent);}
+  .contact-block .links{display:flex; gap:1.4rem; font-family:var(--mono); font-size:0.8rem; color:var(--muted);}
+  .contact-block .links a{text-decoration:none; border-bottom:1px solid transparent;}
+  .contact-block .links a:hover{color:var(--accent); border-color:var(--accent);}
 
-        #education .high-school-info {
-            opacity: 0.7;
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px dashed var(--border-subtle);
-        }
-         #education .high-school-info h3 { font-size: 1.1rem; color: var(--text-medium-emphasis); }
-         #education .high-school-info ul li { font-size: 0.85rem; color: var(--text-low-emphasis); }
+  footer{max-width:1180px; margin:0 auto; padding:1.6rem 2rem; font-family:var(--mono); font-size:0.68rem; color:var(--faint);}
 
-        #contact .contact-content { text-align: center; }
-        #contact .contact-button {
-            font-family: var(--font-heading);
-            font-weight: 600;
-            color: var(--bg-deep-dark);
-            background: linear-gradient(135deg, var(--accent-primary), #00BFFF);
-            padding: 0.75rem 2rem;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            font-size: 1.05rem;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 15px rgba(0, 229, 255, 0.25);
-            border: none;
-            display: inline-block;
-        }
-        #contact .contact-button:hover {
-            transform: translateY(-2px) scale(1.03);
-            box-shadow: 0 6px 20px rgba(0, 229, 255, 0.4);
-        }
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.on{opacity:1; transform:translateY(0);}
 
-        footer {
-            text-align: center;
-            padding: 2.5rem 1rem;
-            border-top: 1px solid var(--border-subtle);
-            margin-top: 3rem;
-            background-color: var(--bg-element-dark);
-        }
-        footer p { font-size: 0.9rem; color: var(--text-low-emphasis); }
-        footer .footer-links a { color: var(--text-medium-emphasis); margin: 0 0.5rem; transition: color 0.3s ease; }
-        footer .footer-links a:hover { color: var(--accent-primary); }
+  @media (prefers-reduced-motion: reduce){
+    .ticker-track{animation:none;}
+  }
 
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-        }
-        .animate-on-scroll.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+  @media (max-width:900px){
+    .hero{grid-template-columns:1fr; padding-top:7rem;}
+    .hero-visual{height:260px; order:-1;}
+    .stat-band{grid-template-columns:repeat(2,1fr);}
+    .profile-grid{grid-template-columns:1fr;}
+    .id-card{max-width:260px;}
+    nav.links{
+      display:none; position:absolute; top:64px; left:0; right:0; background:var(--surface);
+      flex-direction:column; gap:0; border-bottom:1px solid var(--line); padding:0.5rem 0;
+    }
+    nav.links.open{display:flex;}
+    nav.links a{padding:0.8rem 2rem;}
+    .nav-toggle{display:block;}
+    .entry, .edu-row{grid-template-columns:1fr; gap:0.4rem;}
+    section, .hero, .stat-band{padding-left:1.3rem; padding-right:1.3rem;}
+  }
+</style>
 </head>
 <body>
-    <header>
-        <div class="container mx-auto px-6">
-            <a href="#" class="logo-text">Alexander <span class="highlight">Adams</span></a>
-            <nav>
-                <ul class="flex space-x-1 md:space-x-2">
-                    <li><a href="#hero" class="nav-link">Home</a></li>
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#experience" class="nav-link">Experience</a></li>
-                    <li><a href="#projects" class="nav-link">Projects</a></li>
-                    <li><a href="#education" class="nav-link">Education</a></li>
-                    <li><a href="#skills" class="nav-link">Skills</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
-                </ul>
-            </nav>
+
+<header class="topnav">
+  <div class="nav-inner">
+    <a href="#top" class="wordmark">Alexander<span>.</span>Adams</a>
+    <nav class="links" id="navLinks">
+      <a href="#profile">Profile</a>
+      <a href="#origins">Origins</a>
+      <a href="#experience">Experience</a>
+      <a href="#research">Research</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero" style="border:none;">
+    <div class="hero-copy">
+      <div class="eyebrow">Mechanical Eng. · Applied Math · Quant Research</div>
+      <h1>Modeling structure under uncertainty — in lattices, materials, and markets.</h1>
+      <p>Undergraduate researcher building graph neural networks for materials prediction, unsupervised models for ferroelectric imaging, and execution logic for systematic trading. Currently a Machine Learning REU Fellow at NJIT.</p>
+      <div class="hero-links">
+        <a href="#research">View research →</a>
+        <a href="mailto:asa298@pitt.edu">Get in touch →</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <canvas id="netCanvas"></canvas>
+    </div>
+  </section>
+
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker-track">
+      <span>GCN TEST R² <b>0.9456</b> <span class="up">▲ from 0.9148</span></span>
+      <span>RMSE <b>0.002882</b> <span class="up">▼ from 0.003818</span></span>
+      <span>HRT PLACEMENT <b>11 / 18</b> benchmarks beat SA baseline</span>
+      <span>PORTFOLIO SHARPE <span class="up">▲ 46%</span> vs. naive alloc.</span>
+      <span>VOLATILITY <span class="up">▼ 44%</span></span>
+      <span>EXECUTION LATENCY <span class="up">▼ 60%</span></span>
+      <span>PDMS THICKNESS R² <b>0.9734</b> out-of-fold</span>
+      <span>PnL TRACKING ACCURACY <span class="up">▲ 35%</span></span>
+      <span>QUANTCONNECT BACKTEST <b>263%</b> ROI, 10yr — <span class="up">▲ 70%+ vs. S&amp;P</span></span>
+      <span>GCN TEST R² <b>0.9456</b> <span class="up">▲ from 0.9148</span></span>
+      <span>RMSE <b>0.002882</b> <span class="up">▼ from 0.003818</span></span>
+      <span>HRT PLACEMENT <b>11 / 18</b> benchmarks beat SA baseline</span>
+      <span>PORTFOLIO SHARPE <span class="up">▲ 46%</span> vs. naive alloc.</span>
+      <span>VOLATILITY <span class="up">▼ 44%</span></span>
+      <span>EXECUTION LATENCY <span class="up">▼ 60%</span></span>
+      <span>PDMS THICKNESS R² <b>0.9734</b> out-of-fold</span>
+      <span>PnL TRACKING ACCURACY <span class="up">▲ 35%</span></span>
+    </div>
+  </div>
+
+  <div class="stat-band">
+    <div class="stat-big"><span class="num" data-target="0.9456" data-decimals="4">0</span><small>GCN test R²</small></div>
+    <div class="stat-big"><span class="num" data-target="97.34" data-decimals="2" data-suffix="%">0</span><small>PDMS out-of-fold R²</small></div>
+    <div class="stat-big"><span class="num" data-target="263" data-decimals="0" data-suffix="%">0</span><small>10yr backtest ROI</small></div>
+    <div class="stat-big"><span class="num" data-target="11" data-decimals="0" data-suffix="/18">0</span><small>IBM benchmarks beaten</small></div>
+    <div class="stat-big"><span class="num" data-target="60" data-decimals="0" data-suffix="%">0</span><small>Execution latency cut</small></div>
+  </div>
+
+  <section id="profile" class="reveal">
+    <div class="sec-head"><span class="tag">01</span><h2>Profile</h2></div>
+    <div class="profile-grid">
+      <div>
+        <p class="sec-note" style="margin-bottom:1.2rem;">I move between three registers on purpose: physical systems (lattices, thin films, contact mechanics), learning systems (GNNs, autoencoders, ensemble regressors), and market systems (execution, portfolio construction, microstructure). Each sharpens intuition for the others — a stiffness-prediction problem and a covariance-optimization problem are, underneath, the same exercise in modeling structure under uncertainty.</p>
+        <div class="coverage">
+          <span>Graph Neural Networks</span>
+          <span>Unsupervised Clustering</span>
+          <span>Bayesian Optimization</span>
+          <span>Systematic Trading</span>
+          <span>Portfolio Construction</span>
+          <span>Numerical PDEs</span>
         </div>
-    </header>
-
-    <section id="hero">
-        <div id="particles-js-hero"></div>
-        <div class="hero-content-container">
-            <h1 class="name-title">Alexander Adams</h1>
-            <p id="hero-tagline" class="hero-tagline">Bridging Mechanical Engineering with AI and Quantitative Methods.</p>
-            <a href="#about" class="hero-cta-button">Explore My Work</a>
+      </div>
+      <div class="id-card">
+        <div class="avatar">
+          <img src="https://media.licdn.com/dms/image/v2/D4E03AQEBw-K9lrPG1g/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1711306784597"
+               alt="Alexander Adams"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="fallback">AA</div>
         </div>
-    </section>
+        <div class="id-name">Alexander Adams</div>
+        <div class="id-role">University of Pittsburgh '28<br>Mech. Eng. &amp; Applied Math</div>
+      </div>
+    </div>
+  </section>
 
-    <main>
-        <section id="about" class="content-wrapper animate-on-scroll">
-            <div class="section-header">
-                <h2 class="main-title">About <span class="highlight">Me</span></h2>
-                <p class="subtitle">Mechanical Engineering and Applied Mathematics student integrating physical intuition with AI-driven experimentation and quantitative research.</p>
-            </div>
-            <div class="about-grid">
-                <div class="profile-image-container">
-                    <img src="https://media.licdn.com/dms/image/v2/D4E03AQEBw-K9lrPG1g/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1711306784597?e=1767225600&v=beta&t=kTXh5V9vVbcrs_fQKqhjPOkVtawe66ENi8IePk4uDFw">
-                </div>
-                <div class="about-text">
-                    <p>Undergraduate researcher focused on scaling AI, data-driven materials discovery, and quantitative market modeling. I thrive in fast-paced, collaborative environments where I can pair rigorous analysis with practical engineering judgment.</p>
-                    <p>My current work spans unsupervised deep learning for ferroelectric materials, algorithmic trading systems, and continuum modeling of market microstructure. I’m always looking for ways to apply computational tools to challenging physical and financial systems.</p>
-                </div>
-            </div>
-        </section>
+  <section id="origins" class="reveal">
+    <div class="sec-head"><span class="tag">02</span><h2>Origins</h2></div>
+    <p class="sec-note">The résumé picks up in 2025. It didn't start there — same instinct, pick a system, model it, see if the model survives contact with reality, has just been pointed at different systems since high school.</p>
 
-        <section id="experience" class="content-wrapper">
-            <div class="section-header animate-on-scroll">
-                <h2 class="main-title">Professional <span class="highlight">Experience</span></h2>
-                <p class="subtitle">Recent roles spanning AI-first research, quantitative trading, and computational mechanics.</p>
-            </div>
-            <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
-                <div class="info-card animate-on-scroll">
-                    <h3>Undergraduate Researcher</h3>
-                    <p class="card-subhead">Carnegie Mellon University <span class="date">| Aug 2025 – Present</span></p>
-                    <ul>
-                        <li>Developing 4-layer deep embedded clustering autoencoders (DEC/IDEC) on vector pair correlation functions to uncover structural features in ferroelectric materials.</li>
-                        <li>Trained models on 1,000+ STEM-derived embeddings, benchmarking cluster quality across 5–20 clusters using unsupervised metrics.</li>
-                    </ul>
-                </div>
-                <div class="info-card animate-on-scroll" style="transition-delay: 0.1s;">
-                    <h3>Quantitative Trading Intern</h3>
-                    <p class="card-subhead">Limex <span class="date">| Aug 2025 – Sep 2025</span></p>
-                    <ul>
-                        <li>Built statistical arbitrage, breadth scalping, and momentum breakout strategies across 40–50+ liquid equities using Python, pandas, NumPy, and asyncio.</li>
-                        <li>Engineered low-latency execution engines that scanned 300+ opportunities per minute, reducing execution latency ~60% and improving real-time PnL tracking accuracy by 35%.</li>
-                    </ul>
-                </div>
-                <div class="info-card animate-on-scroll" style="transition-delay: 0.2s;">
-                    <h3>REU Research Fellow</h3>
-                    <p class="card-subhead">National Science Foundation <span class="date">| Jun 2025 – Aug 2025</span></p>
-                    <ul>
-                        <li>Applied backpropagation neural networks, k-nearest neighbors, and random forest regression to predict mechanical properties of CFRP/GFRP composites.</li>
-                        <li>Deployed a YOLOv5 CNN to classify failure modes from high-resolution fracture surface imagery.</li>
-                    </ul>
-                </div>
-                <div class="info-card animate-on-scroll" style="transition-delay: 0.3s;">
-                    <h3>Undergraduate Researcher</h3>
-                    <p class="card-subhead">Swanson School of Engineering <span class="date">| Sep 2024 – Jul 2025</span></p>
-                    <ul>
-                        <li>Modeled nanoscale contact mechanics and adhesion using MATLAB and profilometry tools.</li>
-                        <li>Analyzed 100+ micro/nanoscale scans (10 nm – 100 μm) to extract quantitative adhesion measurements.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+    <div class="entry">
+      <div class="when">Jun 2022 —<br>Mar 2023</div>
+      <div>
+        <p class="who">Research Scholar</p>
+        <p class="where">Polygence</p>
+        <ul><li>Ran simulations on radar-absorbing material placement across F-15, F-16, and F-18 airframes to reduce radar cross-section — a high-schooler's fairly serious answer to "what if a fighter jet, but stealthier."</li></ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">Mar 2023 —<br>Sep 2023</div>
+      <div>
+        <p class="who">Research Scholar</p>
+        <p class="where">Polygence</p>
+        <ul><li>Compared the environmental footprint of drone delivery against traditional methods, looking for the operating conditions where electric drones actually come out ahead.</li></ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">Jan 2023 —<br>Present</div>
+      <div>
+        <p class="who">Independent</p>
+        <p class="where">Systematic Trading, QuantConnect</p>
+        <ul><li>Writing and backtesting trading algorithms since sophomore year of high school. Best strategy: <span class="metric">263% ROI</span> over a 10-year backtest, beating the S&amp;P 500 by <span class="metric">70%+</span> over the same window.</li></ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">May 2024 —<br>Oct 2024</div>
+      <div>
+        <p class="who">Full-Stack Developer</p>
+        <p class="where">SUPERTUTOR</p>
+        <ul><li>Built front-end components in React and JavaScript for an AI-driven tutoring platform, then stayed on part-time after the internship ended.</li></ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">Jul 2024 —<br>Sep 2024</div>
+      <div>
+        <p class="who">Software Engineering Fellow</p>
+        <p class="where">Headstarter AI</p>
+        <ul><li>Shipped 5+ AI apps and APIs (Next.js, OpenAI, Pinecone, Stripe) to roughly 1,000 users at <span class="metric">98%</span> accuracy, leading a team of 4 fellows, coached by engineers from Amazon, Bloomberg, and Capital One.</li></ul>
+      </div>
+    </div>
+  </section>
 
-        <section id="projects" class="content-wrapper">
-            <div class="section-header animate-on-scroll">
-                <h2 class="main-title"><span class="highlight">Projects</span></h2>
-                <p class="subtitle">Blending computational methods with financial engineering and applied physics.</p>
-            </div>
-            <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
-                 <div class="info-card animate-on-scroll">
-                    <h3>Market Microstructure Liquidity Dynamics</h3>
-                    <p class="card-subhead">Independent Research <span class="date">| Dec 2025</span></p>
-                    <ul>
-                        <li>Modeled limit-order book liquidity as a conserved density using continuum transport formulations.</li>
-                        <li>Derived a 1-D advection–diffusion PDE with a Reynolds-like number for regime classification.</li>
-                    </ul>
-                </div>
-                <div class="info-card animate-on-scroll" style="transition-delay: 0.1s;">
-                    <h3>Quantitative Portfolio Optimization</h3>
-                    <p class="card-subhead">Financial Engineering <span class="date">| Jun 2025</span></p>
-                    <ul>
-                        <li>Built a modern portfolio theory optimizer across 5 equities using historical price data and Monte Carlo simulations.</li>
-                        <li>Constructed an efficient frontier via constrained optimization on the covariance matrix, cutting volatility 44% and improving Sharpe ratio 46% over naive allocations.</li>
-                    </ul>
-                </div>
-                <div class="info-card animate-on-scroll" style="transition-delay: 0.2s;">
-                    <h3>Publication: Linear Regression Solvers</h3>
-                    <p class="card-subhead">arXiv Preprint <span class="date">| May 2025</span></p>
-                    <ul>
-                        <li>Author of "Comparing the Moore-Penrose Pseudoinverse and Gradient Descent for Solving Linear Regression Problems: A Performance Analysis."</li>
-                        <li>Benchmarked computational efficiency and stability across synthetic and experimental datasets.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+  <section id="experience" class="reveal">
+    <div class="sec-head"><span class="tag">03</span><h2>Experience</h2></div>
 
-        <section id="education" class="content-wrapper">
-            <div class="section-header animate-on-scroll">
-                <h2 class="main-title"><span class="highlight">Education</span></h2>
-            </div>
-            <div class="info-card animate-on-scroll main-education">
-                <h3>BS in Mechanical Engineering & Applied Mathematics</h3>
-                <p class="card-subhead">University of Pittsburgh, Pittsburgh, PA <span class="date">| Expected Graduation: 2028</span></p>
-                <ul>
-                    <li>Exploring the intersection of computational methods, AI, and applied physics.</li>
-                    <li>Active in engineering and research communities to bridge mechanical systems with advanced analytics.</li>
-                </ul>
-            </div>
-            <div class="high-school-info animate-on-scroll info-card" style="transition-delay: 0.1s; background-color: rgba(18,26,43,0.5);">
-                <h3>Advanced Regents High School Diploma</h3>
-                <p class="card-subhead">Sleepy Hollow High School, Sleepy Hollow, NY</p>
-                <ul>
-                    <li>SAT: 1470 (Math: 750, EBW: 720)</li>
-                    <li>2x AP Scholar & National African American Recognition Award Recipient</li>
-                </ul>
-            </div>
-        </section>
+    <div class="entry">
+      <div class="when">Jun 2026 —<br>Present</div>
+      <div>
+        <p class="who">Machine Learning REU Intern</p>
+        <p class="where">National Science Foundation</p>
+        <ul>
+          <li>Engineered richer node-level (8-feature) and graph-level (10+ feature) representations for a GCN pipeline predicting Voronoi lattice stiffness, lifting test <span class="metric">R² 0.9148 → 0.9456</span> and cutting test <span class="metric">RMSE 0.003818 → 0.002882</span> versus baseline.</li>
+          <li>Ran 5-seed benchmarking across residual-connection and Huber-loss variants, 3 optimizers, and 4 GNN architectures (GCN-2, GCN-3, GraphSAGE, GIN); promoted the plain 3-layer GCN as top mean-accuracy configuration and used a learning-rate retune to cut residual-model worst-seed variance (<span class="metric">std 0.0115 → 0.0080</span>).</li>
+        </ul>
+      </div>
+    </div>
 
-                <section id="skills" class="content-wrapper">
-             <div class="section-header animate-on-scroll">
-                <h2 class="main-title">Technical <span class="highlight">Skills</span></h2>
-                <p class="subtitle">Core programming, numerical methods, and analytical tools for engineering and finance.</p>
-            </div>
-            <div class="skills-container animate-on-scroll">
-                <div class="skill-category-card">
-                    <h4>Programming Languages</h4>
-                    <ul>
-                        <li>Python, C, MATLAB</li>
-                        <li>Java, JavaScript</li>
-                        <li>HTML/CSS</li>
-                    </ul>
-                </div>
-                <div class="skill-category-card">
-                    <h4>Tools & Methods</h4>
-                    <ul>
-                        <li>NumPy, pandas, scikit-learn</li>
-                        <li>Numerical PDEs, optimization, clustering</li>
-                        <li>Applied linear algebra and data analysis</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+    <div class="entry">
+      <div class="when">Aug 2025 —<br>Present</div>
+      <div>
+        <p class="who">Undergraduate Researcher</p>
+        <p class="where">Carnegie Mellon University</p>
+        <ul>
+          <li>Developing 4-layer deep embedded clustering autoencoders (DEC / IDEC) over vector pair correlation functions to surface structural features in ferroelectric materials.</li>
+          <li>Trained models across <span class="metric">1,000+</span> STEM-derived embeddings, evaluating cluster quality from 5–20 clusters against unsupervised metrics.</li>
+        </ul>
+      </div>
+    </div>
 
-        <section id="contact" class="content-wrapper">
-            <div class="section-header animate-on-scroll">
-                 <h2 class="main-title"><span class="highlight">Contact</span></h2>
-                <p class="subtitle">Open to innovative projects, research collaborations, and challenging opportunities at the intersection of engineering, AI, and finance.</p>
-            </div>
-            <div class="contact-content animate-on-scroll">
-                <a href="mailto:asa298@pitt.edu" class="contact-button">asa298@pitt.edu</a>
-                 <div class="mt-8 flex justify-center space-x-6">
-                    <a href="https://www.linkedin.com/in/alexsadams" target="_blank" rel="noopener noreferrer" class="text-2xl hover:text-accent-primary transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
-                </div>
-            </div>
-        </section>
-    </main>
+    <div class="entry">
+      <div class="when">Aug 2025 —<br>Present</div>
+      <div>
+        <p class="who">Undergraduate Researcher</p>
+        <p class="where">University of Pittsburgh</p>
+        <ul>
+          <li>Built a Bayesian-optimized random forest (BayesSearchCV) predicting dip-coated PDMS thin-film thickness across three solvent systems — top result across 5 regression families and 3 ensemble strategies, <span class="metric">out-of-fold R² 0.9734</span>.</li>
+          <li>Diagnosed a severe distribution-shift failure under sequential holdout (R² as low as −331.96) and resolved it with stratified 5-fold cross-validation plus a bootstrap / Cholesky-correlated-noise pipeline expanding 58 experimental samples to <span class="metric">3,000</span> using PubChem-derived solvent descriptors.</li>
+        </ul>
+      </div>
+    </div>
 
-    <footer>
-        <p>&copy; <span id="currentYear"></span> Alexander Adams. Precision Engineered | Intelligently Automated.</p>
-        <div class="footer-links mt-2">
-            <a href="#hero">Home</a> |
-            <a href="https://www.linkedin.com/in/alexsadams" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <div class="entry">
+      <div class="when">Aug 2025 —<br>Sep 2025</div>
+      <div>
+        <p class="who">Quantitative Trading Intern</p>
+        <p class="where">Limex</p>
+        <ul>
+          <li>Built statistical arbitrage, breadth scalping, and momentum breakout strategies across 40–50+ liquid equities using Python, pandas, NumPy, and asyncio for the Limex Trading Challenge.</li>
+          <li>Engineered a multi-asset, low-latency execution engine scanning <span class="metric">300+</span> opportunities per minute — <span class="metric">~60%</span> latency reduction, <span class="metric">35%</span> gain in real-time PnL tracking accuracy.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="research" class="reveal">
+    <div class="sec-head"><span class="tag">04</span><h2>Research &amp; Projects</h2></div>
+    <div class="grid-research">
+
+      <div class="card">
+        <div class="kicker">Competition · Mar – May 2026</div>
+        <h3>HRT Macro Placement Challenge</h3>
+        <ul><li>Multi-strategy greedy macro placement algorithm combining 5 sorting heuristics with HPWL-based wirelength estimation, run across 18 IBM ICCAD04 benchmarks.</li></ul>
+        <div class="stat-row">
+          <div class="stat"><b>11 / 18</b><small>Beat SA baseline</small></div>
+          <div class="stat"><b>100%</b><small>Placement validity</small></div>
+          <div class="stat"><b>3.9s</b><small>Avg. runtime</small></div>
         </div>
-    </footer>
+      </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
+      <div class="card">
+        <div class="kicker">Competition · Apr – May 2026</div>
+        <h3>IMC Prosperity 4</h3>
+        <ul>
+          <li>Backtested statistical arbitrage and momentum strategies across 7 simulated instruments using historical round data.</li>
+          <li>Tuned position sizing and entry thresholds across 50+ optimization iterations.</li>
+        </ul>
+      </div>
 
-        if (document.getElementById('hero-tagline')) {
-            new Typed('#hero-tagline', {
-                strings: [
-                    "Bridging Mechanical Engineering with AI and Quantitative Methods.",
-                    "Unsupervised learning for materials, markets, and mechanics.",
-                    "Data-Driven Engineering. Software-Powered Solutions."
-                ],
-                typeSpeed: 40, backSpeed: 25, backDelay: 2500, startDelay: 500,
-                loop: true, smartBackspace: true, showCursor: false
-            });
+      <div class="card">
+        <div class="kicker">Independent Research · Dec 2025 – Present</div>
+        <h3>Market Microstructure Liquidity Dynamics</h3>
+        <ul>
+          <li>Applied the Reynolds Transport Theorem to limit-order-book liquidity, modeling it as a conserved density in price space.</li>
+          <li>Derived a 1-D advection–diffusion PDE for liquidity flow and a Reynolds-like number to classify market regimes, solved via stability-constrained finite-difference simulation.</li>
+        </ul>
+        <canvas class="spark" data-spark="pde"></canvas>
+      </div>
+
+      <div class="card">
+        <div class="kicker">Project · Jun 2025</div>
+        <h3>Quantitative Portfolio Optimization</h3>
+        <ul>
+          <li>Modern-portfolio-theory optimizer across 5 equities using historical price data and Monte Carlo simulation.</li>
+          <li>Efficient frontier via constrained optimization on the covariance matrix.</li>
+        </ul>
+        <div class="stat-row">
+          <div class="stat"><b>−44%</b><small>Volatility</small></div>
+          <div class="stat"><b>+46%</b><small>Sharpe ratio</small></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="kicker">Independent · Jan 2023 – Present</div>
+        <h3>Systematic Trading Algorithms, QuantConnect</h3>
+        <ul><li>Backtested statistical arbitrage and momentum strategies; top algorithm returned 263% over a 10-year backtest.</li></ul>
+        <canvas class="spark" data-spark="equity"></canvas>
+      </div>
+
+      <div class="card">
+        <div class="kicker">Publication · May 2025</div>
+        <h3>Linear Regression Solvers, arXiv Preprint</h3>
+        <ul>
+          <li>"Comparing the Moore-Penrose Pseudoinverse and Gradient Descent for Solving Linear Regression Problems: A Performance Analysis."</li>
+          <li>Benchmarked computational efficiency and stability across synthetic and experimental datasets.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="education" class="reveal">
+    <div class="sec-head"><span class="tag">05</span><h2>Education</h2></div>
+    <div class="edu-row">
+      <div class="when">Expected<br>2028</div>
+      <div>
+        <p class="deg">B.S. Mechanical Engineering &amp; B.S. Applied Mathematics</p>
+        <p class="school">University of Pittsburgh — Minor, Electrical Engineering</p>
+        <ul><li>Coursework spanning mechanics, dynamics, circuits, thermodynamics, and optimization, applied across three concurrent research groups and a summer trading internship.</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="reveal">
+    <div class="sec-head"><span class="tag">—</span><h2>Technical Skills</h2></div>
+    <div class="skills-cols">
+      <div>
+        <h4>Languages</h4>
+        <div class="tagset"><span>Python</span><span>C++</span><span>C</span><span>MATLAB</span><span>Java</span><span>JavaScript</span><span>HTML / CSS</span></div>
+      </div>
+      <div>
+        <h4>Tools &amp; Methods</h4>
+        <div class="tagset"><span>NumPy</span><span>pandas</span><span>scikit-learn</span><span>Numerical PDEs</span><span>Optimization</span><span>Clustering</span><span>Applied Linear Algebra</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="reveal">
+    <div class="sec-head"><span class="tag">06</span><h2>Contact</h2></div>
+    <div class="contact-block">
+      <a class="big-mail" href="mailto:asa298@pitt.edu">asa298@pitt.edu</a>
+      <div class="links">
+        <a href="https://www.linkedin.com/in/alexsadams" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+        <span>New York, NY</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>© <span id="year"></span> Alexander Adams</footer>
+
+</main>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// mobile nav toggle
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', ()=> navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=> navLinks.classList.remove('open')));
+
+// scroll reveal
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('on'); } });
+}, {threshold:0.08});
+revealEls.forEach(el=>io.observe(el));
+
+// animated counters
+function formatNum(v, decimals, prefix, suffix){
+  return (prefix||'') + v.toFixed(decimals) + (suffix||'');
+}
+const counters = document.querySelectorAll('.stat-big .num');
+const counterIO = new IntersectionObserver((entries, obs)=>{
+  entries.forEach(entry=>{
+    if(!entry.isIntersecting) return;
+    const el = entry.target;
+    const target = parseFloat(el.dataset.target);
+    const decimals = parseInt(el.dataset.decimals || '0', 10);
+    const suffix = el.dataset.suffix || '';
+    if(reduceMotion){ el.textContent = formatNum(target, decimals, '', suffix); obs.unobserve(el); return; }
+    const dur = 1400;
+    const start = performance.now();
+    function step(now){
+      const p = Math.min(1, (now - start) / dur);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = formatNum(target * eased, decimals, '', suffix);
+      if(p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+    obs.unobserve(el);
+  });
+}, {threshold:0.4});
+counters.forEach(c=>counterIO.observe(c));
+
+// hero network canvas
+(function(){
+  const canvas = document.getElementById('netCanvas');
+  const ctx = canvas.getContext('2d');
+  let w, h, nodes = [], pulses = [];
+  const ACCENT = '#1449e0';
+  const LINE = 'rgba(11,13,16,0.10)';
+
+  function resize(){
+    const rect = canvas.parentElement.getBoundingClientRect();
+    w = canvas.width = rect.width * devicePixelRatio;
+    h = canvas.height = rect.height * devicePixelRatio;
+    canvas.style.width = rect.width + 'px';
+    canvas.style.height = rect.height + 'px';
+  }
+  function initNodes(){
+    nodes = [];
+    const count = w < 500*devicePixelRatio ? 16 : 26;
+    for(let i=0;i<count;i++){
+      nodes.push({
+        x: Math.random()*w, y: Math.random()*h,
+        vx: (Math.random()-0.5)*0.15, vy: (Math.random()-0.5)*0.15,
+        r: 1.6 + Math.random()*1.8
+      });
+    }
+  }
+  function maybeSpawnPulse(){
+    if(Math.random() < 0.01 && nodes.length > 2){
+      const a = nodes[Math.floor(Math.random()*nodes.length)];
+      const b = nodes[Math.floor(Math.random()*nodes.length)];
+      if(a!==b) pulses.push({a, b, t:0});
+    }
+  }
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    // edges
+    for(let i=0;i<nodes.length;i++){
+      for(let j=i+1;j<nodes.length;j++){
+        const dx = nodes[i].x-nodes[j].x, dy = nodes[i].y-nodes[j].y;
+        const dist = Math.sqrt(dx*dx+dy*dy);
+        const maxDist = 170*devicePixelRatio;
+        if(dist < maxDist){
+          ctx.strokeStyle = LINE;
+          ctx.lineWidth = 1;
+          ctx.globalAlpha = 1 - dist/maxDist;
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.stroke();
+          ctx.globalAlpha = 1;
         }
+      }
+    }
+    // pulses
+    pulses.forEach(p=>{
+      p.t += 0.02;
+      const x = p.a.x + (p.b.x-p.a.x)*p.t;
+      const y = p.a.y + (p.b.y-p.a.y)*p.t;
+      ctx.fillStyle = ACCENT;
+      ctx.beginPath();
+      ctx.arc(x, y, 2.4*devicePixelRatio, 0, Math.PI*2);
+      ctx.fill();
+    });
+    pulses = pulses.filter(p=>p.t < 1);
+    // nodes
+    nodes.forEach(n=>{
+      ctx.fillStyle = '#0b0d10';
+      ctx.globalAlpha = 0.55;
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r*devicePixelRatio, 0, Math.PI*2);
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    });
+  }
+  function tick(){
+    nodes.forEach(n=>{
+      n.x += n.vx*devicePixelRatio; n.y += n.vy*devicePixelRatio;
+      if(n.x < 0 || n.x > w) n.vx *= -1;
+      if(n.y < 0 || n.y > h) n.vy *= -1;
+    });
+    maybeSpawnPulse();
+    draw();
+    if(!reduceMotion) requestAnimationFrame(tick);
+  }
+  resize(); initNodes(); draw();
+  if(!reduceMotion){ requestAnimationFrame(tick); }
+  window.addEventListener('resize', ()=>{ resize(); initNodes(); draw(); });
+})();
 
-        if (document.getElementById('particles-js-hero')) {
-            particlesJS('particles-js-hero', {
-                "particles": {
-                    "number": {"value": 60, "density": {"enable": true, "value_area": 800}},
-                    "color": {"value": "#00E5FF"},
-                    "shape": {"type": "circle"},
-                    "opacity": {"value": 0.2, "random": true},
-                    "size": {"value": 2, "random": true},
-                    "line_linked": {"enable": true, "distance": 120, "color": "#718096", "opacity": 0.15, "width": 1},
-                    "move": {"enable": true, "speed": 1, "direction": "none", "random": true, "straight": false, "out_mode": "out"}
-                },
-                "interactivity": {
-                    "detect_on": "canvas",
-                    "events": {"onhover": {"enable": false, "mode": "grab"}, "onclick": {"enable": false, "mode": "push"}},
-                }, "retina_detect": true
-            });
-        }
+// sparkline canvases in research cards
+document.querySelectorAll('canvas.spark').forEach(canvas=>{
+  const ctx = canvas.getContext('2d');
+  let w, h, points = [], t = 0;
+  const kind = canvas.dataset.spark;
+  const ACCENT = '#1449e0';
 
-        const scrollElements = document.querySelectorAll('.animate-on-scroll');
-        const elementObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                }
-            });
-        }, { threshold: 0.05 });
-        scrollElements.forEach(el => elementObserver.observe(el));
+  function resize(){
+    const rect = canvas.getBoundingClientRect();
+    w = canvas.width = rect.width * devicePixelRatio;
+    h = canvas.height = rect.height * devicePixelRatio;
+  }
+  function seed(){
+    points = [];
+    let v = h*0.6;
+    const n = 60;
+    for(let i=0;i<n;i++){
+      if(kind==='equity'){
+        v += (Math.random()-0.38) * h*0.05;
+      } else {
+        v = h*0.5 + Math.sin(i*0.35)*h*0.18 + (Math.random()-0.5)*h*0.04;
+      }
+      v = Math.max(h*0.08, Math.min(h*0.92, v));
+      points.push(v);
+    }
+  }
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    ctx.strokeStyle = ACCENT;
+    ctx.lineWidth = 1.4*devicePixelRatio;
+    ctx.beginPath();
+    points.forEach((v,i)=>{
+      const x = (i/(points.length-1))*w;
+      const y = h - v;
+      if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    });
+    ctx.stroke();
+  }
+  function step(){
+    points.shift();
+    let last = points[points.length-1];
+    if(kind==='equity'){ last += (Math.random()-0.38) * h*0.05; }
+    else { t += 0.35; last = h*0.5 + Math.sin(t)*h*0.18 + (Math.random()-0.5)*h*0.04; }
+    last = Math.max(h*0.08, Math.min(h*0.92, last));
+    points.push(last);
+    draw();
+    if(!reduceMotion) requestAnimationFrame(loop);
+  }
+  let last = 0;
+  function loop(now){
+    if(now - last > 90){ step(); last = now; }
+    else if(!reduceMotion){ requestAnimationFrame(loop); }
+  }
+  resize(); seed(); draw();
+  if(!reduceMotion){ requestAnimationFrame(loop); }
+  window.addEventListener('resize', ()=>{ resize(); seed(); draw(); });
+});
+</script>
 
-        const navLinks = document.querySelectorAll('.nav-link');
-        const sections = Array.from(document.querySelectorAll('main section[id], header section[id], #hero[id]'));
-
-        function highlightNavLink() {
-            let currentSectionId = 'hero';
-            const scrollY = window.pageYOffset;
-            const headerHeight = 70;
-
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - headerHeight - 50;
-                if (scrollY >= sectionTop) {
-                    currentSectionId = section.getAttribute('id');
-                }
-            });
-
-             if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 100 && sections.length > 0) {
-                currentSectionId = sections[sections.length -1].getAttribute('id');
-            }
-
-            navLinks.forEach(link => {
-                link.classList.remove('nav-active');
-                if (link.getAttribute('href') === `#${currentSectionId}`) {
-                    link.classList.add('nav-active');
-                }
-            });
-        }
-        window.addEventListener('scroll', highlightNavLink);
-        window.addEventListener('load', () => {
-            if (window.location.hash) {
-                const targetId = window.location.hash.substring(1);
-                const targetSection = document.getElementById(targetId);
-                if (targetSection) { targetSection.scrollIntoView({ behavior: 'smooth' }); }
-            }
-            highlightNavLink();
-        });
-    </script>
 </body>
 </html>
