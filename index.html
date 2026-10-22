@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alexander Adams</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alexander Adams | Software, Quant &amp; Machine Learning</title>
+<meta name="description" content="University of Pittsburgh engineering and applied mathematics student building trading systems, materials ML models, and digital-design projects. Seeking Summer 2027 internships.">
+<link rel="canonical" href="https://aadams2006.github.io/">
+<meta property="og:title" content="Alexander Adams | Software, Quant &amp; Machine Learning">
+<meta property="og:description" content="Trading systems, scientific machine learning, and digital design. Seeking Summer 2027 internships.">
+<meta property="og:type" content="website"><meta property="og:url" content="https://aadams2006.github.io/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#f7f7f5;
@@ -34,7 +35,7 @@
   ::selection{background:var(--accent); color:#fff;}
   img{max-width:100%; display:block;}
 
-  /* ---------- nav ---------- */
+
   header.topnav{
     position:fixed; top:0; left:0; width:100%; z-index:200;
     background:rgba(247,247,245,0.85); backdrop-filter:blur(10px);
@@ -61,7 +62,7 @@
   .nav-toggle{display:none; background:none; border:none; cursor:pointer; padding:0.4rem;}
   .nav-toggle span{display:block; width:22px; height:2px; background:var(--ink); margin:4px 0;}
 
-  /* ---------- hero ---------- */
+
   .hero{
     position:relative; padding:9.5rem 2rem 4rem; max-width:1180px; margin:0 auto;
     display:grid; grid-template-columns:1.1fr 0.9fr; gap:2rem; align-items:center; min-height:640px;
@@ -81,28 +82,7 @@
   .hero-visual{position:relative; height:440px;}
   #netCanvas{width:100%; height:100%; display:block;}
 
-  /* ---------- ticker ---------- */
-  .ticker-wrap{
-    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
-    background:var(--surface); overflow:hidden; white-space:nowrap; padding:0.7rem 0;
-  }
-  .ticker-track{display:inline-block; padding-left:100%; animation:tick 40s linear infinite;}
-  .ticker-track span{font-family:var(--mono); font-size:0.78rem; color:var(--muted); margin-right:2.4rem;}
-  .ticker-track span b{color:var(--ink); font-weight:600;}
-  .ticker-track span.up{color:var(--pos);}
-  @keyframes tick{ from{transform:translateX(0);} to{transform:translateX(-100%);} }
 
-  /* ---------- stat band ---------- */
-  .stat-band{
-    max-width:1180px; margin:0 auto; padding:3rem 2rem;
-    display:grid; grid-template-columns:repeat(5,1fr); gap:1.5rem;
-    border-bottom:1px solid var(--line);
-  }
-  .stat-big{text-align:left;}
-  .stat-big .num{font-family:var(--display); font-weight:600; font-size:clamp(1.6rem,2.6vw,2.1rem); color:var(--accent);}
-  .stat-big small{display:block; font-family:var(--mono); font-size:0.68rem; color:var(--faint); letter-spacing:0.03em; margin-top:0.4rem; text-transform:uppercase;}
-
-  /* ---------- generic sections ---------- */
   section{max-width:1180px; margin:0 auto; padding:4rem 2rem; border-bottom:1px solid var(--line);}
   section:last-of-type{border-bottom:none;}
   .sec-head{display:flex; align-items:baseline; gap:0.9rem; margin-bottom:2rem;}
@@ -110,24 +90,7 @@
   .sec-head h2{font-family:var(--display); font-weight:600; font-size:1.6rem; margin:0; letter-spacing:-0.01em;}
   .sec-note{color:var(--muted); font-size:0.98rem; max-width:62ch; line-height:1.7; margin-bottom:2rem;}
 
-  /* profile */
-  .profile-grid{display:grid; grid-template-columns:1fr 260px; gap:2.5rem; align-items:start;}
-  .coverage{display:flex; flex-wrap:wrap; gap:0.55rem; margin-top:1.6rem;}
-  .coverage span{
-    font-family:var(--mono); font-size:0.72rem; border:1px solid var(--line-strong);
-    padding:0.4rem 0.75rem; color:var(--muted); background:var(--surface);
-  }
-  .id-card{border:1px solid var(--line); background:var(--surface); padding:1.4rem; text-align:center;}
-  .avatar{width:96px; height:96px; border-radius:50%; overflow:hidden; margin:0 auto 1rem; position:relative; background:var(--accent);}
-  .avatar img{width:100%; height:100%; object-fit:cover;}
-  .avatar .fallback{
-    position:absolute; inset:0; display:none; align-items:center; justify-content:center;
-    color:#fff; font-family:var(--mono); font-size:1.3rem; font-weight:600;
-  }
-  .id-card .id-name{font-family:var(--display); font-weight:600; font-size:1.05rem;}
-  .id-card .id-role{font-family:var(--mono); font-size:0.68rem; color:var(--muted); margin-top:0.3rem; line-height:1.5;}
 
-  /* timeline entries */
   .entry{
     display:grid; grid-template-columns:150px 1fr; gap:1.6rem;
     padding:1.6rem 0; border-top:1px solid var(--line);
@@ -140,7 +103,7 @@
   .entry li{margin-bottom:0.5rem;}
   .metric{color:var(--ink); font-family:var(--mono); font-weight:600;}
 
-  /* research cards */
+
   .grid-research{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.3rem;}
   .card{border:1px solid var(--line); background:var(--surface); padding:1.6rem; transition:border-color .2s ease, transform .2s ease;}
   .card:hover{border-color:var(--accent); transform:translateY(-3px);}
@@ -154,19 +117,13 @@
   .card .stat small{color:var(--faint); font-size:0.63rem; letter-spacing:0.03em; text-transform:uppercase;}
   .card canvas.spark{width:100%; height:60px; display:block; margin-top:0.9rem;}
 
-  /* education */
-  .edu-row{display:grid; grid-template-columns:150px 1fr; gap:1.6rem;}
-  .edu-row .deg{font-family:var(--display); font-size:1.2rem; font-weight:600; margin:0 0 0.3rem;}
-  .edu-row .school{font-family:var(--mono); font-size:0.76rem; color:var(--accent); margin-bottom:0.9rem;}
-  .edu-row ul{margin:0; padding-left:1.1rem; color:var(--muted); font-size:0.9rem; line-height:1.6;}
 
-  /* skills */
   .skills-cols{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:2rem;}
   .skills-cols h4{font-family:var(--mono); font-size:0.68rem; letter-spacing:0.08em; color:var(--accent); text-transform:uppercase; margin:0 0 0.9rem;}
   .tagset{display:flex; flex-wrap:wrap; gap:0.5rem;}
   .tagset span{font-family:var(--mono); font-size:0.76rem; color:var(--muted); border:1px solid var(--line); padding:0.35rem 0.65rem; background:var(--surface);}
 
-  /* contact */
+
   .contact-block{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:2rem;}
   .contact-block .big-mail{font-family:var(--display); font-weight:600; font-size:clamp(1.4rem,2.8vw,2rem); text-decoration:none; border-bottom:1px solid var(--line-strong);}
   .contact-block .big-mail:hover{color:var(--accent); border-color:var(--accent);}
@@ -176,19 +133,18 @@
 
   footer{max-width:1180px; margin:0 auto; padding:1.6rem 2rem; font-family:var(--mono); font-size:0.68rem; color:var(--faint);}
 
-  .reveal{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease;}
-  .reveal.on{opacity:1; transform:translateY(0);}
+
 
   @media (prefers-reduced-motion: reduce){
-    .ticker-track{animation:none;}
+
   }
 
   @media (max-width:900px){
     .hero{grid-template-columns:1fr; padding-top:7rem;}
     .hero-visual{height:260px; order:-1;}
-    .stat-band{grid-template-columns:repeat(2,1fr);}
-    .profile-grid{grid-template-columns:1fr;}
-    .id-card{max-width:260px;}
+
+
+
     nav.links{
       display:none; position:absolute; top:64px; left:0; right:0; background:var(--surface);
       flex-direction:column; gap:0; border-bottom:1px solid var(--line); padding:0.5rem 0;
@@ -199,349 +155,43 @@
     .entry, .edu-row{grid-template-columns:1fr; gap:0.4rem;}
     section, .hero, .stat-band{padding-left:1.3rem; padding-right:1.3rem;}
   }
-</style>
-</head>
-<body>
 
-<header class="topnav">
-  <div class="nav-inner">
-    <a href="#top" class="wordmark">Alexander<span>.</span>Adams</a>
-    <nav class="links" id="navLinks">
-      <a href="#profile">Profile</a>
-      <a href="#origins">Origins</a>
-      <a href="#experience">Experience</a>
-      <a href="#research">Research</a>
-      <a href="#education">Education</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
-  </div>
-</header>
-
-<main id="top">
-
-  <section class="hero" style="border:none;">
-    <div class="hero-copy">
-      <div class="eyebrow">Mechanical Eng. · Applied Math · Quant Research</div>
-      <h1>Modeling structure under uncertainty — in lattices, materials, and markets.</h1>
-      <p>Undergraduate researcher building graph neural networks for materials prediction, unsupervised models for ferroelectric imaging, and execution logic for systematic trading. Currently a Machine Learning REU Fellow at NJIT.</p>
-      <div class="hero-links">
-        <a href="#research">View research →</a>
-        <a href="mailto:asa298@pitt.edu">Get in touch →</a>
-      </div>
-    </div>
-    <div class="hero-visual">
-      <canvas id="netCanvas"></canvas>
-    </div>
-  </section>
-
-  <div class="ticker-wrap" aria-hidden="true">
-    <div class="ticker-track">
-      <span>GCN TEST R² <b>0.9456</b> <span class="up">▲ from 0.9148</span></span>
-      <span>RMSE <b>0.002882</b> <span class="up">▼ from 0.003818</span></span>
-      <span>HRT PLACEMENT <b>11 / 18</b> benchmarks beat SA baseline</span>
-      <span>PORTFOLIO SHARPE <span class="up">▲ 46%</span> vs. naive alloc.</span>
-      <span>VOLATILITY <span class="up">▼ 44%</span></span>
-      <span>EXECUTION LATENCY <span class="up">▼ 60%</span></span>
-      <span>PDMS THICKNESS R² <b>0.9734</b> out-of-fold</span>
-      <span>PnL TRACKING ACCURACY <span class="up">▲ 35%</span></span>
-      <span>QUANTCONNECT BACKTEST <b>263%</b> ROI, 10yr — <span class="up">▲ 70%+ vs. S&amp;P</span></span>
-      <span>GCN TEST R² <b>0.9456</b> <span class="up">▲ from 0.9148</span></span>
-      <span>RMSE <b>0.002882</b> <span class="up">▼ from 0.003818</span></span>
-      <span>HRT PLACEMENT <b>11 / 18</b> benchmarks beat SA baseline</span>
-      <span>PORTFOLIO SHARPE <span class="up">▲ 46%</span> vs. naive alloc.</span>
-      <span>VOLATILITY <span class="up">▼ 44%</span></span>
-      <span>EXECUTION LATENCY <span class="up">▼ 60%</span></span>
-      <span>PDMS THICKNESS R² <b>0.9734</b> out-of-fold</span>
-      <span>PnL TRACKING ACCURACY <span class="up">▲ 35%</span></span>
-    </div>
-  </div>
-
-  <div class="stat-band">
-    <div class="stat-big"><span class="num" data-target="0.9456" data-decimals="4">0</span><small>GCN test R²</small></div>
-    <div class="stat-big"><span class="num" data-target="97.34" data-decimals="2" data-suffix="%">0</span><small>PDMS out-of-fold R²</small></div>
-    <div class="stat-big"><span class="num" data-target="263" data-decimals="0" data-suffix="%">0</span><small>10yr backtest ROI</small></div>
-    <div class="stat-big"><span class="num" data-target="11" data-decimals="0" data-suffix="/18">0</span><small>IBM benchmarks beaten</small></div>
-    <div class="stat-big"><span class="num" data-target="60" data-decimals="0" data-suffix="%">0</span><small>Execution latency cut</small></div>
-  </div>
-
-  <section id="profile" class="reveal">
-    <div class="sec-head"><span class="tag">01</span><h2>Profile</h2></div>
-    <div class="profile-grid">
-      <div>
-        <p class="sec-note" style="margin-bottom:1.2rem;">I move between three registers on purpose: physical systems (lattices, thin films, contact mechanics), learning systems (GNNs, autoencoders, ensemble regressors), and market systems (execution, portfolio construction, microstructure). Each sharpens intuition for the others — a stiffness-prediction problem and a covariance-optimization problem are, underneath, the same exercise in modeling structure under uncertainty.</p>
-        <div class="coverage">
-          <span>Graph Neural Networks</span>
-          <span>Unsupervised Clustering</span>
-          <span>Bayesian Optimization</span>
-          <span>Systematic Trading</span>
-          <span>Portfolio Construction</span>
-          <span>Numerical PDEs</span>
-        </div>
-      </div>
-      <div class="id-card">
-        <div class="avatar">
-          <img src="https://media.licdn.com/dms/image/v2/D4E03AQEBw-K9lrPG1g/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1711306784597"
-               alt="Alexander Adams"
-               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="fallback">AA</div>
-        </div>
-        <div class="id-name">Alexander Adams</div>
-        <div class="id-role">University of Pittsburgh '28<br>Mech. Eng. &amp; Applied Math</div>
-      </div>
-    </div>
-  </section>
-
-  <section id="origins" class="reveal">
-    <div class="sec-head"><span class="tag">02</span><h2>Origins</h2></div>
-    <p class="sec-note">The résumé picks up in 2025. It didn't start there — same instinct, pick a system, model it, see if the model survives contact with reality, has just been pointed at different systems since high school.</p>
-
-    <div class="entry">
-      <div class="when">Jun 2022 —<br>Mar 2023</div>
-      <div>
-        <p class="who">Research Scholar</p>
-        <p class="where">Polygence</p>
-        <ul><li>Ran simulations on radar-absorbing material placement across F-15, F-16, and F-18 airframes to reduce radar cross-section — a high-schooler's fairly serious answer to "what if a fighter jet, but stealthier."</li></ul>
-      </div>
-    </div>
-    <div class="entry">
-      <div class="when">Mar 2023 —<br>Sep 2023</div>
-      <div>
-        <p class="who">Research Scholar</p>
-        <p class="where">Polygence</p>
-        <ul><li>Compared the environmental footprint of drone delivery against traditional methods, looking for the operating conditions where electric drones actually come out ahead.</li></ul>
-      </div>
-    </div>
-    <div class="entry">
-      <div class="when">Jan 2023 —<br>Present</div>
-      <div>
-        <p class="who">Independent</p>
-        <p class="where">Systematic Trading, QuantConnect</p>
-        <ul><li>Writing and backtesting trading algorithms since sophomore year of high school. Best strategy: <span class="metric">263% ROI</span> over a 10-year backtest, beating the S&amp;P 500 by <span class="metric">70%+</span> over the same window.</li></ul>
-      </div>
-    </div>
-    <div class="entry">
-      <div class="when">May 2024 —<br>Oct 2024</div>
-      <div>
-        <p class="who">Full-Stack Developer</p>
-        <p class="where">SUPERTUTOR</p>
-        <ul><li>Built front-end components in React and JavaScript for an AI-driven tutoring platform, then stayed on part-time after the internship ended.</li></ul>
-      </div>
-    </div>
-    <div class="entry">
-      <div class="when">Jul 2024 —<br>Sep 2024</div>
-      <div>
-        <p class="who">Software Engineering Fellow</p>
-        <p class="where">Headstarter AI</p>
-        <ul><li>Shipped 5+ AI apps and APIs (Next.js, OpenAI, Pinecone, Stripe) to roughly 1,000 users at <span class="metric">98%</span> accuracy, leading a team of 4 fellows, coached by engineers from Amazon, Bloomberg, and Capital One.</li></ul>
-      </div>
-    </div>
-  </section>
-
-  <section id="experience" class="reveal">
-    <div class="sec-head"><span class="tag">03</span><h2>Experience</h2></div>
-
-    <div class="entry">
-      <div class="when">Jun 2026 —<br>Present</div>
-      <div>
-        <p class="who">Machine Learning REU Intern</p>
-        <p class="where">National Science Foundation</p>
-        <ul>
-          <li>Engineered richer node-level (8-feature) and graph-level (10+ feature) representations for a GCN pipeline predicting Voronoi lattice stiffness, lifting test <span class="metric">R² 0.9148 → 0.9456</span> and cutting test <span class="metric">RMSE 0.003818 → 0.002882</span> versus baseline.</li>
-          <li>Ran 5-seed benchmarking across residual-connection and Huber-loss variants, 3 optimizers, and 4 GNN architectures (GCN-2, GCN-3, GraphSAGE, GIN); promoted the plain 3-layer GCN as top mean-accuracy configuration and used a learning-rate retune to cut residual-model worst-seed variance (<span class="metric">std 0.0115 → 0.0080</span>).</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="entry">
-      <div class="when">Aug 2025 —<br>Present</div>
-      <div>
-        <p class="who">Undergraduate Researcher</p>
-        <p class="where">Carnegie Mellon University</p>
-        <ul>
-          <li>Developing 4-layer deep embedded clustering autoencoders (DEC / IDEC) over vector pair correlation functions to surface structural features in ferroelectric materials.</li>
-          <li>Trained models across <span class="metric">1,000+</span> STEM-derived embeddings, evaluating cluster quality from 5–20 clusters against unsupervised metrics.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="entry">
-      <div class="when">Aug 2025 —<br>Present</div>
-      <div>
-        <p class="who">Undergraduate Researcher</p>
-        <p class="where">University of Pittsburgh</p>
-        <ul>
-          <li>Built a Bayesian-optimized random forest (BayesSearchCV) predicting dip-coated PDMS thin-film thickness across three solvent systems — top result across 5 regression families and 3 ensemble strategies, <span class="metric">out-of-fold R² 0.9734</span>.</li>
-          <li>Diagnosed a severe distribution-shift failure under sequential holdout (R² as low as −331.96) and resolved it with stratified 5-fold cross-validation plus a bootstrap / Cholesky-correlated-noise pipeline expanding 58 experimental samples to <span class="metric">3,000</span> using PubChem-derived solvent descriptors.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="entry">
-      <div class="when">Aug 2025 —<br>Sep 2025</div>
-      <div>
-        <p class="who">Quantitative Trading Intern</p>
-        <p class="where">Limex</p>
-        <ul>
-          <li>Built statistical arbitrage, breadth scalping, and momentum breakout strategies across 40–50+ liquid equities using Python, pandas, NumPy, and asyncio for the Limex Trading Challenge.</li>
-          <li>Engineered a multi-asset, low-latency execution engine scanning <span class="metric">300+</span> opportunities per minute — <span class="metric">~60%</span> latency reduction, <span class="metric">35%</span> gain in real-time PnL tracking accuracy.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section id="research" class="reveal">
-    <div class="sec-head"><span class="tag">04</span><h2>Research &amp; Projects</h2></div>
-    <div class="grid-research">
-
-      <div class="card">
-        <div class="kicker">Competition · Mar – May 2026</div>
-        <h3>HRT Macro Placement Challenge</h3>
-        <ul><li>Multi-strategy greedy macro placement algorithm combining 5 sorting heuristics with HPWL-based wirelength estimation, run across 18 IBM ICCAD04 benchmarks.</li></ul>
-        <div class="stat-row">
-          <div class="stat"><b>11 / 18</b><small>Beat SA baseline</small></div>
-          <div class="stat"><b>100%</b><small>Placement validity</small></div>
-          <div class="stat"><b>3.9s</b><small>Avg. runtime</small></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="kicker">Competition · Apr – May 2026</div>
-        <h3>IMC Prosperity 4</h3>
-        <ul>
-          <li>Backtested statistical arbitrage and momentum strategies across 7 simulated instruments using historical round data.</li>
-          <li>Tuned position sizing and entry thresholds across 50+ optimization iterations.</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <div class="kicker">Independent Research · Dec 2025 – Present</div>
-        <h3>Market Microstructure Liquidity Dynamics</h3>
-        <ul>
-          <li>Applied the Reynolds Transport Theorem to limit-order-book liquidity, modeling it as a conserved density in price space.</li>
-          <li>Derived a 1-D advection–diffusion PDE for liquidity flow and a Reynolds-like number to classify market regimes, solved via stability-constrained finite-difference simulation.</li>
-        </ul>
-        <canvas class="spark" data-spark="pde"></canvas>
-      </div>
-
-      <div class="card">
-        <div class="kicker">Project · Jun 2025</div>
-        <h3>Quantitative Portfolio Optimization</h3>
-        <ul>
-          <li>Modern-portfolio-theory optimizer across 5 equities using historical price data and Monte Carlo simulation.</li>
-          <li>Efficient frontier via constrained optimization on the covariance matrix.</li>
-        </ul>
-        <div class="stat-row">
-          <div class="stat"><b>−44%</b><small>Volatility</small></div>
-          <div class="stat"><b>+46%</b><small>Sharpe ratio</small></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="kicker">Independent · Jan 2023 – Present</div>
-        <h3>Systematic Trading Algorithms, QuantConnect</h3>
-        <ul><li>Backtested statistical arbitrage and momentum strategies; top algorithm returned 263% over a 10-year backtest.</li></ul>
-        <canvas class="spark" data-spark="equity"></canvas>
-      </div>
-
-      <div class="card">
-        <div class="kicker">Publication · May 2025</div>
-        <h3>Linear Regression Solvers, arXiv Preprint</h3>
-        <ul>
-          <li>"Comparing the Moore-Penrose Pseudoinverse and Gradient Descent for Solving Linear Regression Problems: A Performance Analysis."</li>
-          <li>Benchmarked computational efficiency and stability across synthetic and experimental datasets.</li>
-        </ul>
-      </div>
-
-    </div>
-  </section>
-
-  <section id="education" class="reveal">
-    <div class="sec-head"><span class="tag">05</span><h2>Education</h2></div>
-    <div class="edu-row">
-      <div class="when">Expected<br>2028</div>
-      <div>
-        <p class="deg">B.S. Mechanical Engineering &amp; B.S. Applied Mathematics</p>
-        <p class="school">University of Pittsburgh — Minor, Electrical Engineering</p>
-        <ul><li>Coursework spanning mechanics, dynamics, circuits, thermodynamics, and optimization, applied across three concurrent research groups and a summer trading internship.</li></ul>
-      </div>
-    </div>
-  </section>
-
-  <section id="skills" class="reveal">
-    <div class="sec-head"><span class="tag">—</span><h2>Technical Skills</h2></div>
-    <div class="skills-cols">
-      <div>
-        <h4>Languages</h4>
-        <div class="tagset"><span>Python</span><span>C++</span><span>C</span><span>MATLAB</span><span>Java</span><span>JavaScript</span><span>HTML / CSS</span></div>
-      </div>
-      <div>
-        <h4>Tools &amp; Methods</h4>
-        <div class="tagset"><span>NumPy</span><span>pandas</span><span>scikit-learn</span><span>Numerical PDEs</span><span>Optimization</span><span>Clustering</span><span>Applied Linear Algebra</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact" class="reveal">
-    <div class="sec-head"><span class="tag">06</span><h2>Contact</h2></div>
-    <div class="contact-block">
-      <a class="big-mail" href="mailto:asa298@pitt.edu">asa298@pitt.edu</a>
-      <div class="links">
-        <a href="https://www.linkedin.com/in/alexsadams" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
-        <span>New York, NY</span>
-      </div>
-    </div>
-  </section>
-
-  <footer>© <span id="year"></span> Alexander Adams</footer>
-
-</main>
-
-<script>
-document.getElementById('year').textContent = new Date().getFullYear();
-
-// mobile nav toggle
+  section{scroll-margin-top:80px;}
+  .hero{border-bottom:1px solid var(--line);}
+  .hero-copy .eyebrow{text-transform:none;letter-spacing:0.02em;font-size:0.9rem;}
+  .hero-copy h1{font-size:clamp(2.3rem,4.4vw,3.5rem);}
+  .hero-copy p.availability{font-size:0.94rem;max-width:53ch;}
+  .hero-links,.project-links{display:flex;flex-wrap:wrap;gap:0.8rem 1.3rem;}
+  .project-links{margin-top:1.2rem;}
+  .project-links a{font-family:var(--mono);font-size:0.75rem;color:var(--accent);text-underline-offset:4px;}
+  .grid-research{grid-template-columns:repeat(2,minmax(0,1fr));}
+  #projects>.grid-research:not(.compact-grid)>.card:last-child{grid-column:1/-1;}
+  .card p,.entry p:not(.where){font-size:0.93rem;line-height:1.7;color:var(--muted);}
+  .card p.kicker{font-family:var(--mono);font-size:0.68rem;line-height:1.6;color:var(--muted);margin:0;}
+  .card .project-status{border-top:1px solid var(--line);padding-top:0.9rem;font-size:0.85rem;}
+  .more-heading{font-family:var(--display);font-size:1.15rem;margin:2.4rem 0 1rem;}
+  .skills-cols{margin-top:2.2rem;}
+  .skills-cols h3{font-family:var(--mono);font-size:0.7rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.04em;margin:0 0 1rem;}
+  .entry .when{color:var(--muted);line-height:1.7;}
+  .entry .where{margin-top:0.3rem;}
+  .updated{margin-left:1rem;}
+  .skip-link{position:absolute;top:-70px;left:1rem;z-index:300;padding:1rem;background:var(--surface);}
+  .skip-link:focus{top:0.5rem;}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:5px;}
+  @media(max-width:600px){.grid-research{grid-template-columns:1fr;}.hero-visual{height:180px;}.hero{gap:1rem;}.card{padding:1.3rem;}.updated{display:block;margin:0.5rem 0 0;}}
+</style></head><body><a href="#main" class="skip-link">Skip to content</a><header class="topnav"><div class="nav-inner"><a href="#top" class="wordmark">Alexander<span>.</span>Adams</a><nav class="links" id="navLinks" aria-label="Main navigation"><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#about">About</a><a href="#writing">Writing</a><a href="#contact">Contact</a><a href="resume.pdf">Resume</a></nav><button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button></div></header><main id="main"><div id="top"></div><section class="hero"><div class="hero-copy"><div class="eyebrow">Alexander Adams</div><h1>Software, quantitative systems, and machine learning</h1><p>I’m a mechanical engineering and applied mathematics student at the University of Pittsburgh. I build trading systems, research models for materials, and tools that make those models usable.</p><p class="availability">Seeking Summer 2027 internships in software engineering, quantitative research, and machine learning, with a preference for New York City.</p><div class="hero-links"><a href="#projects">View Projects <span aria-hidden="true">↗</span></a><a href="resume.pdf">Resume <span aria-hidden="true">↗</span></a><a href="https://github.com/aadams2006">GitHub <span aria-hidden="true">↗</span></a></div></div><div class="hero-visual" aria-hidden="true"><canvas id="netCanvas"></canvas></div></section><section id="projects"><div class="sec-head"><span class="tag">01</span><h2>Selected Projects</h2></div><div class="grid-research"><article class="card"><p class="kicker">Python · asyncio · pandas · NumPy</p><h3>Limex Trading Systems</h3><p>Built statistical arbitrage, breadth scalping, and momentum breakout strategies for the Limex Trading Challenge. Developed asynchronous API workflows for market data and order submission, with position tracking and trade logging.</p><p class="project-status">Context: Paper trading, August to September 2025.</p><div class="project-links"><a href="https://github.com/aadams2006/Limex-Quant-Challenge">Code <span aria-hidden="true">↗</span></a></div></article><article class="card"><p class="kicker">SystemVerilog · Python · Fixed-point arithmetic</p><h3>FPGA Statistical Arbitrage Engine</h3><p>Built an RTL pipeline that tracks two symbols, computes a hedge-adjusted spread and rolling z-score, and emits trading signals. Added a Python reference model, deterministic market feeds, and tests for message encoding, book updates, and signal generation.</p><p class="project-status">Status: Educational prototype with RTL simulation. FPGA synthesis and board benchmarks remain to be completed.</p><div class="project-links"><a href="https://github.com/aadams2006/fpga_stat_arb_engine/tree/main/fpga_stat_arb_engine">Code <span aria-hidden="true">↗</span></a></div></article><article class="card"><p class="kicker">Graph neural networks · Ensemble modeling · Browser inference</p><h3>Lattice Stiffness Prediction</h3><p>Developed a five-model GCN ensemble to predict Voronoi lattice stiffness from graph geometry. Built a browser app for uploading lattice graphs and inspecting predictions, model disagreement, and training-range warnings.</p><p class="project-status">Results: Test R² 0.9528; external-set R² 0.4024. The external result shows a substantial generalization gap.</p><div class="project-links"><a href="https://aadams2006.github.io/NSF-REU-Summer-26/">Demo <span aria-hidden="true">↗</span></a><a href="https://github.com/aadams2006/NSF-REU-Summer-26">Code <span aria-hidden="true">↗</span></a><a href="https://github.com/aadams2006/NSF-REU-Summer-26/blob/main/apps/lattice_predictor/README.md">Model Notes <span aria-hidden="true">↗</span></a></div></article><article class="card"><p class="kicker">scikit-learn · Random forests · Experimental data</p><h3>Thin-Film Modeling and Validation</h3><p>Built models for PDMS film thickness across three solvent systems. Extended evaluation to grouped cross-validation, unseen solvents, and concentration extrapolation, while separating bonded and mobile thickness targets. Documented transfer failures and the need for independent experiments.</p><div class="project-links"><a href="https://github.com/aadams2006/Pitt-ML-MSE-Project">Code <span aria-hidden="true">↗</span></a><a href="https://github.com/aadams2006/Pitt-ML-MSE-Project/tree/main/near_term">Methods and Results <span aria-hidden="true">↗</span></a></div></article><article class="card"><p class="kicker">Autoencoders · DEC/IDEC · Scientific imaging</p><h3>Clustering Ferroelectric Microstructure</h3><p>Developed clustering workflows for STEM-derived vector pair correlation functions. Compared K-means, DEC, and IDEC across repeated seeds and mapped cluster assignments back onto image coordinates.</p><p class="project-status">Status: Synthetic benchmarks and research-image exploration. Cluster maps require physical validation before they can be interpreted as phase boundaries.</p><div class="project-links"><a href="https://github.com/aadams2006/CMU-vPCF-Project">Code <span aria-hidden="true">↗</span></a><a href="https://github.com/aadams2006/CMU-vPCF-Project/tree/master/Phase%20Boundary%20Testing">Evaluation Notes <span aria-hidden="true">↗</span></a></div></article></div><h3 class="more-heading">More Projects</h3><div class="grid-research compact-grid"><article class="card"><h3>HRT Macro Placement Challenge</h3><p>Developed a greedy chip-floorplanning algorithm and compared placement validity and estimated wirelength against a simulated-annealing baseline.</p></article><article class="card"><h3>Portfolio Optimization</h3><p>Built a Python tool for exploring efficient frontiers and minimum-volatility and maximum-Sharpe allocations using historical prices, Monte Carlo simulation, and constrained optimization.</p><div class="project-links"><a href="https://github.com/aadams2006/Quant-MPT-Optimizer">Code <span aria-hidden="true">↗</span></a></div></article></div></section><section id="experience"><div class="sec-head"><span class="tag">02</span><h2>Experience</h2></div><article class="entry"><div class="when">August 2025 to present</div><div><h3 class="who">Undergraduate Researcher</h3><p class="where">Carnegie Mellon University</p><p>Developing unsupervised learning workflows for ferroelectric materials, with a focus on clustering evaluation and mapping model outputs back to microscopy data.</p></div></article><article class="entry"><div class="when">August 2025 to present</div><div><h3 class="who">Undergraduate Researcher</h3><p class="where">University of Pittsburgh</p><p>Combining thin-film experiments, predictive modeling, and validation across solvents and process conditions.</p></div></article><article class="entry"><div class="when">June to August 2026</div><div><h3 class="who">NSF REU, Machine Learning</h3><p class="where">New Jersey Institute of Technology</p><p>Developed graph-based models for lattice stiffness and evaluated architecture choices, ensemble behavior, and performance on external geometries.</p></div></article><article class="entry"><div class="when">August to September 2025</div><div><h3 class="who">Quantitative Trading Intern</h3><p class="where">Limex</p><p>Developed Python strategies and asynchronous trading workflows for the Limex Trading Challenge.</p></div></article></section><section id="about"><div class="sec-head"><span class="tag">03</span><h2>About</h2></div><p class="sec-note">I’m pursuing B.S. degrees in Mechanical Engineering and Applied Mathematics, with a minor in Electrical Engineering, at the University of Pittsburgh. I expect to graduate in spring 2028.</p><p class="sec-note">My work spans scientific machine learning, quantitative trading, and digital design. I’m interested in problems where the model, implementation, and evaluation all need to hold up.</p><div class="skills-cols"><div><h3>Programming</h3><div class="tagset"><span>Python</span><span>C++</span><span>C</span><span>MATLAB</span><span>JavaScript</span><span>SystemVerilog</span></div></div><div><h3>Data and ML</h3><div class="tagset"><span>NumPy</span><span>pandas</span><span>scikit-learn</span><span>graph neural networks</span><span>autoencoders</span></div></div><div><h3>Systems and numerical methods</h3><div class="tagset"><span>asyncio</span><span>RTL simulation</span><span>fixed-point arithmetic</span><span>optimization</span><span>numerical PDEs</span></div></div></div></section><section id="writing"><div class="sec-head"><span class="tag">04</span><h2>Writing</h2></div><article class="card"><p class="kicker">arXiv preprint | May 2025</p><h3>Comparing the Moore-Penrose Pseudoinverse and Gradient Descent for Solving Linear Regression Problems: A Performance Analysis</h3><p>Compared direct and iterative linear regression solvers in terms of runtime, numerical stability, and predictive performance.</p><div class="project-links"><a href="https://arxiv.org/abs/2505.23552">Read Preprint <span aria-hidden="true">↗</span></a><a href="https://github.com/aadams2006/Moore-Pinv-Gd">Code <span aria-hidden="true">↗</span></a></div></article></section><section id="contact"><div class="sec-head"><span class="tag">05</span><h2>Contact</h2></div><p class="sec-note">I’m looking for Summer 2027 opportunities in software engineering, quantitative research, and machine learning. New York City is my preferred location.</p><div class="contact-block"><a class="big-mail" href="mailto:asa298@pitt.edu">asa298@pitt.edu</a><div class="project-links"><a href="https://github.com/aadams2006">GitHub <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/alexsadams">LinkedIn <span aria-hidden="true">↗</span></a><a href="resume.pdf">Resume <span aria-hidden="true">↗</span></a></div></div></section><footer>© <span id="year">2026</span> Alexander Adams <span class="updated">Updated October 2026</span></footer></main><script>document.getElementById('year').textContent = new Date().getFullYear();
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
-navToggle.addEventListener('click', ()=> navLinks.classList.toggle('open'));
-navLinks.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=> navLinks.classList.remove('open')));
+navToggle.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', String(open));
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  navLinks.classList.remove('open');
+  navToggle.setAttribute('aria-expanded', 'false');
+}));
 
-// scroll reveal
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const revealEls = document.querySelectorAll('.reveal');
-const io = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('on'); } });
-}, {threshold:0.08});
-revealEls.forEach(el=>io.observe(el));
-
-// animated counters
-function formatNum(v, decimals, prefix, suffix){
-  return (prefix||'') + v.toFixed(decimals) + (suffix||'');
-}
-const counters = document.querySelectorAll('.stat-big .num');
-const counterIO = new IntersectionObserver((entries, obs)=>{
-  entries.forEach(entry=>{
-    if(!entry.isIntersecting) return;
-    const el = entry.target;
-    const target = parseFloat(el.dataset.target);
-    const decimals = parseInt(el.dataset.decimals || '0', 10);
-    const suffix = el.dataset.suffix || '';
-    if(reduceMotion){ el.textContent = formatNum(target, decimals, '', suffix); obs.unobserve(el); return; }
-    const dur = 1400;
-    const start = performance.now();
-    function step(now){
-      const p = Math.min(1, (now - start) / dur);
-      const eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = formatNum(target * eased, decimals, '', suffix);
-      if(p < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-    obs.unobserve(el);
-  });
-}, {threshold:0.4});
-counters.forEach(c=>counterIO.observe(c));
-
-// hero network canvas
 (function(){
   const canvas = document.getElementById('netCanvas');
   const ctx = canvas.getContext('2d');
@@ -630,64 +280,4 @@ counters.forEach(c=>counterIO.observe(c));
   window.addEventListener('resize', ()=>{ resize(); initNodes(); draw(); });
 })();
 
-// sparkline canvases in research cards
-document.querySelectorAll('canvas.spark').forEach(canvas=>{
-  const ctx = canvas.getContext('2d');
-  let w, h, points = [], t = 0;
-  const kind = canvas.dataset.spark;
-  const ACCENT = '#1449e0';
-
-  function resize(){
-    const rect = canvas.getBoundingClientRect();
-    w = canvas.width = rect.width * devicePixelRatio;
-    h = canvas.height = rect.height * devicePixelRatio;
-  }
-  function seed(){
-    points = [];
-    let v = h*0.6;
-    const n = 60;
-    for(let i=0;i<n;i++){
-      if(kind==='equity'){
-        v += (Math.random()-0.38) * h*0.05;
-      } else {
-        v = h*0.5 + Math.sin(i*0.35)*h*0.18 + (Math.random()-0.5)*h*0.04;
-      }
-      v = Math.max(h*0.08, Math.min(h*0.92, v));
-      points.push(v);
-    }
-  }
-  function draw(){
-    ctx.clearRect(0,0,w,h);
-    ctx.strokeStyle = ACCENT;
-    ctx.lineWidth = 1.4*devicePixelRatio;
-    ctx.beginPath();
-    points.forEach((v,i)=>{
-      const x = (i/(points.length-1))*w;
-      const y = h - v;
-      if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
-    });
-    ctx.stroke();
-  }
-  function step(){
-    points.shift();
-    let last = points[points.length-1];
-    if(kind==='equity'){ last += (Math.random()-0.38) * h*0.05; }
-    else { t += 0.35; last = h*0.5 + Math.sin(t)*h*0.18 + (Math.random()-0.5)*h*0.04; }
-    last = Math.max(h*0.08, Math.min(h*0.92, last));
-    points.push(last);
-    draw();
-    if(!reduceMotion) requestAnimationFrame(loop);
-  }
-  let last = 0;
-  function loop(now){
-    if(now - last > 90){ step(); last = now; }
-    else if(!reduceMotion){ requestAnimationFrame(loop); }
-  }
-  resize(); seed(); draw();
-  if(!reduceMotion){ requestAnimationFrame(loop); }
-  window.addEventListener('resize', ()=>{ resize(); seed(); draw(); });
-});
-</script>
-
-</body>
-</html>
+</script></body></html>
